@@ -55,12 +55,12 @@ function ImageUploader({
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
-  const [urlInput, setUrlInput] = useState(value.startsWith("http") ? value : "");
-  const [mode, setMode] = useState<"upload" | "url">(value.startsWith("http") && !value.includes("supabase") ? "url" : "upload");
+  const [showUrlInput, setShowUrlInput] = useState(false);
+  const [urlInput, setUrlInput] = useState("");
 
   async function uploadFile(file: File) {
     if (!file.type.startsWith("image/")) {
-      toast.error("Please select an image file"); return;
+      toast.error("Please select an image file (JPG, PNG, WebP)"); return;
     }
     if (file.size > 5 * 1024 * 1024) {
       toast.error("Image must be under 5 MB"); return;
@@ -73,9 +73,9 @@ function ImageUploader({
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
       onChange(data.url);
-      toast.success("Image uploaded");
+      toast.success("Photo uploaded successfully");
     } catch (e: any) {
-      toast.error(e.message ?? "Upload failed");
+      toast.error(e.message ?? "Upload failed — please try again");
     } finally {
       setUploading(false);
     }
@@ -88,98 +88,188 @@ function ImageUploader({
     if (file) uploadFile(file);
   }
 
-  function applyUrl() {
-    if (!urlInput.startsWith("http")) { toast.error("Enter a valid URL"); return; }
-    onChange(urlInput);
+  function handleFileInput(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (file) uploadFile(file);
+    // Reset input so same file can be selected again
+    e.target.value = "";
   }
 
+  function applyUrl() {
+    const trimmed = urlInput.trim();
+    if (!trimmed.startsWith("http")) {
+      toast.error("Please enter a valid image URL starting with http");
+      return;
+    }
+    onChange(trimmed);
+    setShowUrlInput(false);
+    setUrlInput("");
+    toast.success("Image URL applied");
+  }
+
+  const hasImage = value && value.startsWith("http");
+
   return (
-    <div className="space-y-3">
-      {/* Mode switcher */}
-      <div className="flex gap-2">
-        <button type="button" onClick={() => setMode("upload")}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
-            mode === "upload" ? "bg-[#E86A2A] text-white" : "bg-[#FFF7ED] text-[#5C3D2E]"}`}>
-          <Upload className="w-3 h-3" /> Upload Photo
+    <div className="space-y-2">
+      {/* Hidden file input */}
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/jpeg,image/jpg,image/png,image/webp,image/gif"
+        className="hidden"
+        onChange={handleFileInput}
+      />
+
+      {/* Main upload area */}
+      <div
+        onDrop={handleDrop}
+        onDragOver={e => { e.preventDefault(); setDragOver(true); }}
+        onDragLeave={() => setDragOver(false)}
+        className={`relative rounded-2xl overflow-hidden transition-all ${
+          dragOver
+            ? "ring-2 ring-[#E86A2A] ring-offset-2"
+            : ""
+        }`}
+      >
+        {hasImage ? (
+          /* ── Has image — show preview with overlay controls ── */
+          <div className="relative group">
+            <div className="relative w-full h-44 rounded-2xl overflow-hidden bg-[#F5EBDD]">
+              <Image
+                src={value}
+                alt="Menu item photo"
+                fill
+                className="object-cover"
+                sizes="480px"
+              />
+            </div>
+            {/* Overlay on hover */}
+            <div className="absolute inset-0 bg-black/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+              <button
+                type="button"
+                onClick={() => inputRef.current?.click()}
+                disabled={uploading}
+                className="flex items-center gap-2 bg-white text-[#2B1B14] px-4 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#FFF7ED] transition-colors"
+              >
+                {uploading ? (
+                  <><Loader2 className="w-4 h-4 animate-spin" /> Uploading...</>
+                ) : (
+                  <><Upload className="w-4 h-4" /> Change Photo</>
+                )}
+              </button>
+              <button
+                type="button"
+                onClick={() => onChange("")}
+                className="flex items-center gap-2 bg-red-500 text-white px-4 py-2.5 rounded-xl text-sm font-semibold hover:bg-red-600 transition-colors"
+              >
+                <X className="w-4 h-4" /> Remove
+              </button>
+            </div>
+            {/* Upload progress indicator */}
+            {uploading && (
+              <div className="absolute inset-0 bg-black/60 rounded-2xl flex flex-col items-center justify-center gap-3">
+                <Loader2 className="w-10 h-10 text-white animate-spin" />
+                <p className="text-white text-sm font-semibold">Uploading photo...</p>
+              </div>
+            )}
+          </div>
+        ) : (
+          /* ── No image — show upload dropzone ── */
+          <div
+            onClick={() => !uploading && inputRef.current?.click()}
+            className={`border-2 border-dashed rounded-2xl cursor-pointer transition-all ${
+              dragOver
+                ? "border-[#E86A2A] bg-[#FFF7ED]"
+                : "border-[#E8D5C0] bg-[#FFF7ED]/50 hover:border-[#E86A2A] hover:bg-[#FFF7ED]"
+            } ${uploading ? "pointer-events-none" : ""}`}
+          >
+            <div className="py-8 px-4 text-center">
+              {uploading ? (
+                <div className="space-y-3">
+                  <Loader2 className="w-10 h-10 mx-auto text-[#E86A2A] animate-spin" />
+                  <p className="text-sm font-semibold text-[#E86A2A]">Uploading photo...</p>
+                  <p className="text-xs text-gray-400">Please wait</p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <div className="w-14 h-14 bg-[#F5EBDD] rounded-2xl flex items-center justify-center mx-auto">
+                    <Upload className="w-7 h-7 text-[#E86A2A]" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-[#2B1B14]">
+                      Click to upload a photo
+                    </p>
+                    <p className="text-xs text-[#8B5E44] mt-1">
+                      or drag and drop from your computer / phone
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 flex-wrap">
+                    {["JPG", "PNG", "WebP", "GIF"].map(f => (
+                      <span key={f} className="text-[10px] bg-white border border-[#E8D5C0] text-[#8B5E44] px-2 py-0.5 rounded-full font-medium">
+                        {f}
+                      </span>
+                    ))}
+                    <span className="text-[10px] text-gray-400">· Max 5 MB</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Secondary actions row */}
+      <div className="flex items-center justify-between">
+        <button
+          type="button"
+          onClick={() => inputRef.current?.click()}
+          disabled={uploading}
+          className="flex items-center gap-1.5 text-xs text-[#E86A2A] font-semibold hover:text-[#C94F16] transition-colors disabled:opacity-50"
+        >
+          <Upload className="w-3.5 h-3.5" />
+          {hasImage ? "Replace photo" : "Browse files"}
         </button>
-        <button type="button" onClick={() => setMode("url")}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
-            mode === "url" ? "bg-[#E86A2A] text-white" : "bg-[#FFF7ED] text-[#5C3D2E]"}`}>
-          <ImageIcon className="w-3 h-3" /> Paste URL
+
+        <button
+          type="button"
+          onClick={() => setShowUrlInput(p => !p)}
+          className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-600 transition-colors"
+        >
+          <ImageIcon className="w-3.5 h-3.5" />
+          Use image URL instead
         </button>
       </div>
 
-      {mode === "upload" ? (
-        <div
-          onDrop={handleDrop}
-          onDragOver={e => { e.preventDefault(); setDragOver(true); }}
-          onDragLeave={() => setDragOver(false)}
-          onClick={() => !uploading && inputRef.current?.click()}
-          className={`relative border-2 border-dashed rounded-2xl p-4 text-center cursor-pointer transition-all ${
-            dragOver ? "border-[#E86A2A] bg-[#FFF7ED]" : "border-[#E8D5C0] hover:border-[#E86A2A] hover:bg-[#FFF7ED]"
-          } ${uploading ? "pointer-events-none opacity-60" : ""}`}
-        >
-          <input
-            ref={inputRef}
-            type="file"
-            accept="image/jpeg,image/jpg,image/png,image/webp,image/gif"
-            className="hidden"
-            onChange={e => e.target.files?.[0] && uploadFile(e.target.files[0])}
-          />
-
-          {value ? (
-            <div className="relative">
-              <div className="relative w-full h-32 rounded-xl overflow-hidden">
-                <Image src={value} alt="Preview" fill className="object-cover" sizes="400px" />
-              </div>
-              <div className="absolute inset-0 bg-black/40 rounded-xl flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                <span className="text-white text-xs font-semibold">Click to change</span>
-              </div>
-            </div>
-          ) : (
-            <div className="py-4">
-              {uploading ? (
-                <Loader2 className="w-8 h-8 mx-auto text-[#E86A2A] animate-spin mb-2" />
-              ) : (
-                <Upload className="w-8 h-8 mx-auto text-[#E8D5C0] mb-2" />
-              )}
-              <p className="text-sm text-[#8B5E44] font-medium">
-                {uploading ? "Uploading..." : "Drop image here or click to browse"}
-              </p>
-              <p className="text-xs text-gray-400 mt-1">JPG, PNG, WebP · Max 5 MB</p>
-            </div>
-          )}
-        </div>
-      ) : (
-        <div className="space-y-2">
+      {/* URL input — shown only when toggled */}
+      {showUrlInput && (
+        <div className="bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl p-3 space-y-2 animate-fade-in">
+          <p className="text-xs text-[#8B5E44] font-medium">Paste an image URL (from Google, Unsplash, etc.)</p>
           <div className="flex gap-2">
             <input
               type="url"
               value={urlInput}
               onChange={e => setUrlInput(e.target.value)}
-              placeholder="https://images.unsplash.com/..."
-              className="flex-1 px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]"
+              placeholder="https://example.com/image.jpg"
               onKeyDown={e => e.key === "Enter" && applyUrl()}
+              autoFocus
+              className="flex-1 px-3 py-2.5 bg-white border border-[#E8D5C0] rounded-xl text-sm text-[#2B1B14] placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#E86A2A]"
             />
-            <button type="button" onClick={applyUrl}
-              className="px-4 py-3 bg-[#E86A2A] text-white rounded-xl text-sm font-semibold hover:bg-[#C94F16] transition-colors">
+            <button
+              type="button"
+              onClick={applyUrl}
+              className="px-4 py-2.5 bg-[#E86A2A] text-white rounded-xl text-sm font-semibold hover:bg-[#C94F16] transition-colors whitespace-nowrap"
+            >
               Apply
             </button>
+            <button
+              type="button"
+              onClick={() => { setShowUrlInput(false); setUrlInput(""); }}
+              className="p-2.5 text-gray-400 hover:text-gray-600 rounded-xl hover:bg-white transition-colors"
+            >
+              <X className="w-4 h-4" />
+            </button>
           </div>
-          {value && (
-            <div className="relative w-full h-28 rounded-xl overflow-hidden">
-              <Image src={value} alt="Preview" fill className="object-cover" sizes="400px" />
-            </div>
-          )}
         </div>
-      )}
-
-      {/* Clear button */}
-      {value && (
-        <button type="button" onClick={() => { onChange(""); setUrlInput(""); }}
-          className="flex items-center gap-1 text-xs text-red-500 hover:text-red-700 transition-colors">
-          <X className="w-3 h-3" /> Remove image
-        </button>
       )}
     </div>
   );
