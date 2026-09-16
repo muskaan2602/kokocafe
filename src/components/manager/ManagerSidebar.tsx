@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard, ClipboardList, Table2, UtensilsCrossed,
   BarChart3, Settings, Coffee, QrCode, Tag,
-  Package, Users, CalendarCheck, Wallet, FileText, Lock,
+  Package, Users, CalendarCheck, Wallet, FileText, Lock, Bike,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { UserRole } from "@/lib/supabase/types";
@@ -17,6 +17,7 @@ const navSections = [
     items: [
       { href: "/manager",            label: "Dashboard",      icon: LayoutDashboard, adminOnly: false },
       { href: "/manager/orders",     label: "Live Orders",    icon: ClipboardList,   adminOnly: false },
+      { href: "/manager/delivery",   label: "Delivery Orders",icon: Bike,            adminOnly: false },
       { href: "/manager/tables",     label: "Tables",         icon: Table2,          adminOnly: false },
       { href: "/manager/menu",       label: "Menu",           icon: UtensilsCrossed, adminOnly: false },
       { href: "/manager/categories", label: "Categories",     icon: Tag,             adminOnly: false },

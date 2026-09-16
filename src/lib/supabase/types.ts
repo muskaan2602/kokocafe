@@ -12,8 +12,9 @@ export type TableStatus  = 'available' | 'occupied' | 'reserved'
 export type UserRole     = 'manager' | 'admin'
 
 // ── New enums ──────────────────────────────────────────────────────────────
-export type EmployeeRole   = 'Barista' | 'Chef' | 'Baker' | 'Waiter' | 'Cashier' | 'Manager' | 'Cleaner' | 'Security' | 'Delivery' | 'Other'
+export type OrderSource = 'dine_in' | 'zomato' | 'swiggy' | 'phone' | 'takeaway' | 'other'
 export type EmployeeStatus = 'active' | 'inactive'
+export type EmployeeRole   = 'Barista' | 'Chef' | 'Baker' | 'Waiter' | 'Cashier' | 'Manager' | 'Cleaner' | 'Security' | 'Delivery' | 'Other'
 export type AttendanceStatus = 'present' | 'absent' | 'half_day' | 'leave' | 'late'
 export type TransactionType  = 'advance' | 'salary' | 'bonus' | 'deduction' | 'other'
 export type PaymentMethod    = 'cash' | 'bank_transfer' | 'upi' | 'cheque' | 'other'
@@ -40,9 +41,9 @@ export interface Database {
         Update: { id?: string; category_id?: string; name?: string; description?: string | null; price?: number; image_url?: string | null; is_available?: boolean; is_veg?: boolean; sort_order?: number; created_at?: string }
       }
       orders: {
-        Row:    { id: string; order_number: string; table_id: string; status: OrderStatus; subtotal: number; tax: number; total: number; notes: string | null; created_at: string; updated_at: string }
-        Insert: { id?: string; order_number?: string; table_id: string; status?: OrderStatus; subtotal: number; tax: number; total: number; notes?: string | null; created_at?: string; updated_at?: string }
-        Update: { id?: string; order_number?: string; table_id?: string; status?: OrderStatus; subtotal?: number; tax?: number; total?: number; notes?: string | null; created_at?: string; updated_at?: string }
+        Row:    { id: string; order_number: string; table_id: string; status: OrderStatus; subtotal: number; tax: number; total: number; notes: string | null; created_at: string; updated_at: string; order_source: string; external_order_id: string | null; customer_name: string | null; customer_phone: string | null; delivery_address: string | null }
+        Insert: { id?: string; order_number?: string; table_id: string; status?: OrderStatus; subtotal: number; tax: number; total: number; notes?: string | null; created_at?: string; updated_at?: string; order_source?: string; external_order_id?: string | null; customer_name?: string | null; customer_phone?: string | null; delivery_address?: string | null }
+        Update: { id?: string; order_number?: string; table_id?: string; status?: OrderStatus; subtotal?: number; tax?: number; total?: number; notes?: string | null; created_at?: string; updated_at?: string; order_source?: string; external_order_id?: string | null; customer_name?: string | null; customer_phone?: string | null; delivery_address?: string | null }
       }
       order_items: {
         Row:    { id: string; order_id: string; menu_item_id: string | null; item_name: string; quantity: number; price: number; special_instructions: string | null }
