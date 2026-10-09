@@ -81,25 +81,25 @@ export default function OrderMenuClient({
   const cartItem = items.find((i) => i.menuItemId === modal?.item.id);
 
   return (
-    <div className="min-h-screen bg-[#FFF7ED]">
+    <div className="min-h-screen bg-[#FAF3E8]">
       {/* Sticky header */}
-      <header className="sticky top-0 z-40 bg-white border-b border-[#F5EBDD] shadow-sm">
+      <header className="sticky top-0 z-40 bg-white border-b border-[#F2E6D0] shadow-sm">
         <div className="max-w-2xl mx-auto px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-[#E86A2A] rounded-xl flex items-center justify-center shrink-0">
+            <div className="w-9 h-9 bg-[#BF4E19] rounded-xl flex items-center justify-center shrink-0">
               <Coffee className="w-5 h-5 text-white" />
             </div>
             <div className="flex-1 min-w-0">
-              <div className="font-display font-bold text-[#2B1B14] text-base leading-none">
+              <div className="font-display font-bold text-[#1A1108] text-base leading-none">
                 KOKO – Café & Bakers
               </div>
-              <div className="text-xs text-[#8B5E44] mt-0.5">
+              <div className="text-xs text-[#6B4C35] mt-0.5">
                 Freshly brewed. Freshly baked.
               </div>
             </div>
-            <div className="flex items-center gap-1 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl px-3 py-1.5 shrink-0">
-              <MapPin className="w-3 h-3 text-[#E86A2A]" />
-              <span className="text-xs font-semibold text-[#2B1B14]">
+            <div className="flex items-center gap-1 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl px-3 py-1.5 shrink-0">
+              <MapPin className="w-3 h-3 text-[#BF4E19]" />
+              <span className="text-xs font-semibold text-[#1A1108]">
                 {tableLabel}
               </span>
             </div>
@@ -109,7 +109,7 @@ export default function OrderMenuClient({
 
       <div className="max-w-2xl mx-auto px-4 pb-32">
         {/* Table banner */}
-        <div className="bg-[#E86A2A] rounded-2xl px-5 py-3 mt-4 flex items-center gap-3">
+        <div className="bg-[#BF4E19] rounded-2xl px-5 py-3 mt-4 flex items-center gap-3">
           <MapPin className="w-5 h-5 text-white shrink-0" />
           <p className="text-white text-sm font-medium">
             You&apos;re ordering from{" "}
@@ -119,13 +119,13 @@ export default function OrderMenuClient({
 
         {/* Search */}
         <div className="relative mt-4">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8B5E44]" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B4C35]" />
           <input
             type="text"
             placeholder="Search food & drinks..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-11 pr-4 py-3.5 bg-white border border-[#E8D5C0] rounded-2xl text-sm text-[#2B1B14] placeholder:text-[#8B5E44] focus:outline-none focus:ring-2 focus:ring-[#E86A2A] focus:border-transparent"
+            className="w-full pl-11 pr-4 py-3.5 bg-white border border-[#E8D5B7] rounded-2xl text-sm text-[#1A1108] placeholder:text-[#6B4C35] focus:outline-none focus:ring-2 focus:ring-[#BF4E19] focus:border-transparent"
           />
         </div>
 
@@ -137,8 +137,8 @@ export default function OrderMenuClient({
               onClick={() => setActiveCategory(cat)}
               className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-2.5 rounded-2xl text-sm font-semibold transition-all ${
                 activeCategory === cat
-                  ? "bg-[#E86A2A] text-white shadow-md"
-                  : "bg-white text-[#5C3D2E] border border-[#E8D5C0] hover:border-[#E86A2A] hover:text-[#E86A2A]"
+                  ? "bg-[#BF4E19] text-white shadow-md"
+                  : "bg-white text-[#3D2B1A] border border-[#E8D5B7] hover:border-[#BF4E19] hover:text-[#BF4E19]"
               }`}
             >
               <span>{CATEGORY_ICONS[cat] ?? "🍽️"}</span>
@@ -149,7 +149,7 @@ export default function OrderMenuClient({
 
         {/* Items */}
         {filtered.length === 0 ? (
-          <div className="text-center py-20 text-[#8B5E44]">
+          <div className="text-center py-20 text-[#6B4C35]">
             <Search className="w-12 h-12 mx-auto mb-3 opacity-30" />
             <p className="font-medium">No items found</p>
           </div>
@@ -158,7 +158,7 @@ export default function OrderMenuClient({
             {filtered.map((item) => (
               <div
                 key={item.id}
-                className="bg-white rounded-3xl overflow-hidden shadow-sm border border-[#F5EBDD] flex gap-0 cursor-pointer hover:shadow-md transition-shadow active:scale-[0.99]"
+                className="bg-white rounded-3xl overflow-hidden shadow-sm border border-[#F2E6D0] flex gap-0 cursor-pointer hover:shadow-md transition-shadow active:scale-[0.99]"
                 onClick={() => item.is_available && openModal(item)}
               >
                 {/* Info */}
@@ -179,19 +179,19 @@ export default function OrderMenuClient({
                           }`}
                         />
                       </div>
-                      <span className="text-xs text-[#8B5E44]">
+                      <span className="text-xs text-[#6B4C35]">
                         {item.category?.name}
                       </span>
                     </div>
-                    <h3 className="font-semibold text-[#2B1B14] text-base leading-snug">
+                    <h3 className="font-semibold text-[#1A1108] text-base leading-snug">
                       {item.name}
                     </h3>
-                    <p className="text-[#8B5E44] text-xs mt-1 line-clamp-2 leading-relaxed">
+                    <p className="text-[#6B4C35] text-xs mt-1 line-clamp-2 leading-relaxed">
                       {item.description}
                     </p>
                   </div>
                   <div className="flex items-center justify-between mt-3">
-                    <span className="text-[#E86A2A] font-bold text-lg">
+                    <span className="text-[#BF4E19] font-bold text-lg">
                       {formatPrice(item.price)}
                     </span>
                     {item.is_available ? (
@@ -200,13 +200,13 @@ export default function OrderMenuClient({
                           e.stopPropagation();
                           openModal(item);
                         }}
-                        className="flex items-center gap-1 bg-[#E86A2A] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#C94F16] transition-colors shadow-sm active:scale-95"
+                        className="flex items-center gap-1 bg-[#BF4E19] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#A33D10] transition-colors shadow-sm active:scale-95"
                       >
                         <Plus className="w-4 h-4" />
                         ADD
                       </button>
                     ) : (
-                      <span className="text-xs text-[#8B5E44] bg-[#F5EBDD] px-3 py-1.5 rounded-xl">
+                      <span className="text-xs text-[#6B4C35] bg-[#F2E6D0] px-3 py-1.5 rounded-xl">
                         Unavailable
                       </span>
                     )}
@@ -224,7 +224,7 @@ export default function OrderMenuClient({
                       sizes="128px"
                     />
                   ) : (
-                    <div className="w-full h-full bg-[#F5EBDD] flex items-center justify-center text-3xl">
+                    <div className="w-full h-full bg-[#F2E6D0] flex items-center justify-center text-3xl">
                       ☕
                     </div>
                   )}
@@ -237,16 +237,16 @@ export default function OrderMenuClient({
 
       {/* Sticky cart bar */}
       {totalItems > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-gradient-to-t from-[#FFF7ED] via-[#FFF7ED]/80 to-transparent pt-6">
+        <div className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-gradient-to-t from-[#FAF3E8] via-[#FAF3E8]/80 to-transparent pt-6">
           <div className="max-w-2xl mx-auto">
             <Link
               href={`/order/${tableToken}/cart`}
-              className="flex items-center justify-between w-full bg-[#E86A2A] text-white px-6 py-4 rounded-2xl shadow-xl hover:bg-[#C94F16] transition-colors active:scale-[0.98]"
+              className="flex items-center justify-between w-full bg-[#BF4E19] text-white px-6 py-4 rounded-2xl shadow-xl hover:bg-[#A33D10] transition-colors active:scale-[0.98]"
             >
               <div className="flex items-center gap-3">
                 <div className="relative">
                   <ShoppingCart className="w-6 h-6" />
-                  <div className="absolute -top-2 -right-2 w-5 h-5 bg-white text-[#E86A2A] rounded-full text-xs font-bold flex items-center justify-center">
+                  <div className="absolute -top-2 -right-2 w-5 h-5 bg-white text-[#BF4E19] rounded-full text-xs font-bold flex items-center justify-center">
                     {totalItems}
                   </div>
                 </div>
@@ -280,7 +280,7 @@ export default function OrderMenuClient({
                   sizes="512px"
                 />
               ) : (
-                <div className="w-full h-full bg-[#F5EBDD] flex items-center justify-center text-6xl">
+                <div className="w-full h-full bg-[#F2E6D0] flex items-center justify-center text-6xl">
                   ☕
                 </div>
               )}
@@ -288,7 +288,7 @@ export default function OrderMenuClient({
                 onClick={() => setModal(null)}
                 className="absolute top-4 right-4 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors"
               >
-                <X className="w-4 h-4 text-[#2B1B14]" />
+                <X className="w-4 h-4 text-[#1A1108]" />
               </button>
               {modal.item.is_veg && (
                 <div className="absolute top-4 left-4 w-6 h-6 bg-white rounded border-2 border-green-600 flex items-center justify-center">
@@ -299,20 +299,20 @@ export default function OrderMenuClient({
 
             <div className="p-5">
               <div className="flex items-start justify-between mb-2">
-                <h2 className="font-display text-xl font-bold text-[#2B1B14] flex-1 pr-3">
+                <h2 className="font-display text-xl font-bold text-[#1A1108] flex-1 pr-3">
                   {modal.item.name}
                 </h2>
-                <span className="text-[#E86A2A] font-bold text-xl shrink-0">
+                <span className="text-[#BF4E19] font-bold text-xl shrink-0">
                   {formatPrice(modal.item.price)}
                 </span>
               </div>
-              <p className="text-[#8B5E44] text-sm leading-relaxed mb-5">
+              <p className="text-[#6B4C35] text-sm leading-relaxed mb-5">
                 {modal.item.description}
               </p>
 
               {/* Qty selector */}
               <div className="mb-5">
-                <label className="text-sm font-semibold text-[#2B1B14] mb-2 block">
+                <label className="text-sm font-semibold text-[#1A1108] mb-2 block">
                   Quantity
                 </label>
                 <div className="flex items-center gap-4">
@@ -322,22 +322,22 @@ export default function OrderMenuClient({
                         m ? { ...m, qty: Math.max(1, m.qty - 1) } : m
                       )
                     }
-                    className="w-10 h-10 rounded-xl bg-[#F5EBDD] flex items-center justify-center hover:bg-[#E8D5C0] transition-colors"
+                    className="w-10 h-10 rounded-xl bg-[#F2E6D0] flex items-center justify-center hover:bg-[#E8D5B7] transition-colors"
                   >
-                    <Minus className="w-4 h-4 text-[#2B1B14]" />
+                    <Minus className="w-4 h-4 text-[#1A1108]" />
                   </button>
-                  <span className="text-xl font-bold text-[#2B1B14] w-8 text-center">
+                  <span className="text-xl font-bold text-[#1A1108] w-8 text-center">
                     {modal.qty}
                   </span>
                   <button
                     onClick={() =>
                       setModal((m) => (m ? { ...m, qty: m.qty + 1 } : m))
                     }
-                    className="w-10 h-10 rounded-xl bg-[#F5EBDD] flex items-center justify-center hover:bg-[#E8D5C0] transition-colors"
+                    className="w-10 h-10 rounded-xl bg-[#F2E6D0] flex items-center justify-center hover:bg-[#E8D5B7] transition-colors"
                   >
-                    <Plus className="w-4 h-4 text-[#2B1B14]" />
+                    <Plus className="w-4 h-4 text-[#1A1108]" />
                   </button>
-                  <span className="text-sm text-[#8B5E44] ml-2">
+                  <span className="text-sm text-[#6B4C35] ml-2">
                     = {formatPrice(modal.item.price * modal.qty)}
                   </span>
                 </div>
@@ -345,9 +345,9 @@ export default function OrderMenuClient({
 
               {/* Special instructions */}
               <div className="mb-6">
-                <label className="text-sm font-semibold text-[#2B1B14] mb-2 block">
+                <label className="text-sm font-semibold text-[#1A1108] mb-2 block">
                   Special Instructions{" "}
-                  <span className="font-normal text-[#8B5E44]">(optional)</span>
+                  <span className="font-normal text-[#6B4C35]">(optional)</span>
                 </label>
                 <textarea
                   value={modal.instructions}
@@ -358,13 +358,13 @@ export default function OrderMenuClient({
                   }
                   placeholder="E.g. Less sugar, extra spicy, no onions..."
                   rows={3}
-                  className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-2xl text-sm text-[#2B1B14] placeholder:text-[#8B5E44] focus:outline-none focus:ring-2 focus:ring-[#E86A2A] resize-none"
+                  className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-2xl text-sm text-[#1A1108] placeholder:text-[#6B4C35] focus:outline-none focus:ring-2 focus:ring-[#BF4E19] resize-none"
                 />
               </div>
 
               <button
                 onClick={handleAddToCart}
-                className="w-full bg-[#E86A2A] text-white py-4 rounded-2xl font-semibold text-base hover:bg-[#C94F16] transition-colors shadow-sm active:scale-[0.98]"
+                className="w-full bg-[#BF4E19] text-white py-4 rounded-2xl font-semibold text-base hover:bg-[#A33D10] transition-colors shadow-sm active:scale-[0.98]"
               >
                 {cartItem
                   ? `Update Cart — ${formatPrice(modal.item.price * modal.qty)}`

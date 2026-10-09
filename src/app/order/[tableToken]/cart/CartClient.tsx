@@ -84,20 +84,20 @@ export default function CartClient({ table, tableToken }: Props) {
 
   if (totalItems === 0) {
     return (
-      <div className="min-h-screen bg-[#FFF7ED] flex items-center justify-center px-4">
+      <div className="min-h-screen bg-[#FAF3E8] flex items-center justify-center px-4">
         <div className="text-center max-w-xs">
-          <div className="w-20 h-20 bg-[#F5EBDD] rounded-3xl flex items-center justify-center mx-auto mb-4">
-            <ShoppingCart className="w-10 h-10 text-[#E86A2A]" />
+          <div className="w-20 h-20 bg-[#F2E6D0] rounded-3xl flex items-center justify-center mx-auto mb-4">
+            <ShoppingCart className="w-10 h-10 text-[#BF4E19]" />
           </div>
-          <h2 className="font-display text-2xl font-bold text-[#2B1B14] mb-2">
+          <h2 className="font-display text-2xl font-bold text-[#1A1108] mb-2">
             Your cart is empty
           </h2>
-          <p className="text-[#8B5E44] text-sm mb-6">
+          <p className="text-[#6B4C35] text-sm mb-6">
             Go back and add some delicious items!
           </p>
           <Link
             href={`/order/${tableToken}`}
-            className="inline-flex items-center gap-2 bg-[#E86A2A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#C94F16] transition-colors"
+            className="inline-flex items-center gap-2 bg-[#BF4E19] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#A33D10] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" /> Browse Menu
           </Link>
@@ -107,26 +107,26 @@ export default function CartClient({ table, tableToken }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-[#FFF7ED]">
+    <div className="min-h-screen bg-[#FAF3E8]">
       {/* Header */}
-      <header className="sticky top-0 z-40 bg-white border-b border-[#F5EBDD] shadow-sm">
+      <header className="sticky top-0 z-40 bg-white border-b border-[#F2E6D0] shadow-sm">
         <div className="max-w-2xl mx-auto px-4 py-3 flex items-center gap-3">
           <Link
             href={`/order/${tableToken}`}
-            className="p-2 rounded-xl hover:bg-[#F5EBDD] transition-colors text-[#2B1B14]"
+            className="p-2 rounded-xl hover:bg-[#F2E6D0] transition-colors text-[#1A1108]"
           >
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div className="flex-1">
-            <h1 className="font-display font-bold text-[#2B1B14] text-lg">
+            <h1 className="font-display font-bold text-[#1A1108] text-lg">
               Your Cart
             </h1>
-            <div className="text-xs text-[#8B5E44] flex items-center gap-1">
-              <MapPin className="w-3 h-3 text-[#E86A2A]" />
+            <div className="text-xs text-[#6B4C35] flex items-center gap-1">
+              <MapPin className="w-3 h-3 text-[#BF4E19]" />
               {tableLabel}
             </div>
           </div>
-          <span className="text-sm text-[#8B5E44]">
+          <span className="text-sm text-[#6B4C35]">
             {totalItems} item{totalItems !== 1 ? "s" : ""}
           </span>
         </div>
@@ -138,7 +138,7 @@ export default function CartClient({ table, tableToken }: Props) {
           {items.map((item) => (
             <div
               key={item.menuItemId}
-              className="bg-white rounded-3xl p-4 shadow-sm border border-[#F5EBDD]"
+              className="bg-white rounded-3xl p-4 shadow-sm border border-[#F2E6D0]"
             >
               <div className="flex gap-3">
                 {item.imageUrl && (
@@ -166,7 +166,7 @@ export default function CartClient({ table, tableToken }: Props) {
                           }`}
                         />
                       </div>
-                      <h3 className="font-semibold text-[#2B1B14] text-sm truncate">
+                      <h3 className="font-semibold text-[#1A1108] text-sm truncate">
                         {item.name}
                       </h3>
                     </div>
@@ -183,27 +183,27 @@ export default function CartClient({ table, tableToken }: Props) {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => updateQty(item.menuItemId, item.quantity - 1)}
-                        className="w-7 h-7 rounded-lg bg-[#F5EBDD] flex items-center justify-center hover:bg-[#E8D5C0] transition-colors"
+                        className="w-7 h-7 rounded-lg bg-[#F2E6D0] flex items-center justify-center hover:bg-[#E8D5B7] transition-colors"
                       >
-                        <Minus className="w-3 h-3 text-[#2B1B14]" />
+                        <Minus className="w-3 h-3 text-[#1A1108]" />
                       </button>
-                      <span className="font-semibold text-[#2B1B14] text-sm w-5 text-center">
+                      <span className="font-semibold text-[#1A1108] text-sm w-5 text-center">
                         {item.quantity}
                       </span>
                       <button
                         onClick={() => updateQty(item.menuItemId, item.quantity + 1)}
-                        className="w-7 h-7 rounded-lg bg-[#F5EBDD] flex items-center justify-center hover:bg-[#E8D5C0] transition-colors"
+                        className="w-7 h-7 rounded-lg bg-[#F2E6D0] flex items-center justify-center hover:bg-[#E8D5B7] transition-colors"
                       >
-                        <Plus className="w-3 h-3 text-[#2B1B14]" />
+                        <Plus className="w-3 h-3 text-[#1A1108]" />
                       </button>
                     </div>
-                    <span className="font-bold text-[#E86A2A]">
+                    <span className="font-bold text-[#BF4E19]">
                       {formatPrice(item.price * item.quantity)}
                     </span>
                   </div>
 
                   {item.specialInstructions && (
-                    <p className="text-xs text-[#8B5E44] mt-1.5 bg-[#FFF7ED] px-2 py-1 rounded-lg">
+                    <p className="text-xs text-[#6B4C35] mt-1.5 bg-[#FAF3E8] px-2 py-1 rounded-lg">
                       📝 {item.specialInstructions}
                     </p>
                   )}
@@ -214,61 +214,61 @@ export default function CartClient({ table, tableToken }: Props) {
         </div>
 
         {/* Order notes */}
-        <div className="bg-white rounded-3xl p-4 shadow-sm border border-[#F5EBDD] mb-6">
-          <label className="text-sm font-semibold text-[#2B1B14] mb-2 block">
+        <div className="bg-white rounded-3xl p-4 shadow-sm border border-[#F2E6D0] mb-6">
+          <label className="text-sm font-semibold text-[#1A1108] mb-2 block">
             Order Notes{" "}
-            <span className="font-normal text-[#8B5E44]">(optional)</span>
+            <span className="font-normal text-[#6B4C35]">(optional)</span>
           </label>
           <textarea
             value={orderNotes}
             onChange={(e) => setOrderNotes(e.target.value)}
             placeholder="Any special requests for the whole order..."
             rows={3}
-            className="w-full px-3 py-2.5 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm text-[#2B1B14] placeholder:text-[#8B5E44] focus:outline-none focus:ring-2 focus:ring-[#E86A2A] resize-none"
+            className="w-full px-3 py-2.5 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm text-[#1A1108] placeholder:text-[#6B4C35] focus:outline-none focus:ring-2 focus:ring-[#BF4E19] resize-none"
           />
         </div>
 
         {/* Bill summary */}
-        <div className="bg-white rounded-3xl p-5 shadow-sm border border-[#F5EBDD] mb-6">
-          <h3 className="font-semibold text-[#2B1B14] mb-4">Bill Details</h3>
+        <div className="bg-white rounded-3xl p-5 shadow-sm border border-[#F2E6D0] mb-6">
+          <h3 className="font-semibold text-[#1A1108] mb-4">Bill Details</h3>
           <div className="space-y-2 text-sm">
             {items.map((item) => (
-              <div key={item.menuItemId} className="flex justify-between text-[#5C3D2E]">
+              <div key={item.menuItemId} className="flex justify-between text-[#3D2B1A]">
                 <span>{item.name} × {item.quantity}</span>
                 <span>{formatPrice(item.price * item.quantity)}</span>
               </div>
             ))}
-            <div className="border-t border-[#F5EBDD] pt-2 mt-2 flex justify-between text-[#5C3D2E]">
+            <div className="border-t border-[#F2E6D0] pt-2 mt-2 flex justify-between text-[#3D2B1A]">
               <span>Subtotal</span>
               <span>{formatPrice(subtotal)}</span>
             </div>
-            <div className="flex justify-between text-[#5C3D2E]">
+            <div className="flex justify-between text-[#3D2B1A]">
               <span>GST (5%)</span>
               <span>{formatPrice(tax)}</span>
             </div>
-            <div className="border-t border-[#F5EBDD] pt-3 mt-1 flex justify-between font-bold text-[#2B1B14] text-base">
+            <div className="border-t border-[#F2E6D0] pt-3 mt-1 flex justify-between font-bold text-[#1A1108] text-base">
               <span>Total</span>
-              <span className="text-[#E86A2A]">{formatPrice(total)}</span>
+              <span className="text-[#BF4E19]">{formatPrice(total)}</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Sticky CTA */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#F5EBDD] p-4 shadow-2xl">
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#F2E6D0] p-4 shadow-2xl">
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-sm text-[#8B5E44] flex items-center gap-1">
-              <MapPin className="w-3 h-3 text-[#E86A2A]" /> {tableLabel}
+            <span className="text-sm text-[#6B4C35] flex items-center gap-1">
+              <MapPin className="w-3 h-3 text-[#BF4E19]" /> {tableLabel}
             </span>
-            <span className="font-bold text-[#2B1B14]">
+            <span className="font-bold text-[#1A1108]">
               Total: {formatPrice(total)}
             </span>
           </div>
           <button
             onClick={handlePlaceOrder}
             disabled={loading}
-            className="w-full bg-[#E86A2A] text-white py-4 rounded-2xl font-semibold text-base hover:bg-[#C94F16] transition-colors shadow-sm active:scale-[0.98] disabled:opacity-70 flex items-center justify-center gap-2"
+            className="w-full bg-[#BF4E19] text-white py-4 rounded-2xl font-semibold text-base hover:bg-[#A33D10] transition-colors shadow-sm active:scale-[0.98] disabled:opacity-70 flex items-center justify-center gap-2"
           >
             {loading ? (
               <>

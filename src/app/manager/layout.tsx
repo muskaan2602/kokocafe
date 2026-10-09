@@ -36,17 +36,17 @@ export default async function ManagerLayout({
               <div className="w-20 h-20 bg-red-100 rounded-3xl flex items-center justify-center mx-auto mb-5">
                 <span className="text-4xl">🔒</span>
               </div>
-              <h1 className="text-2xl font-bold text-[#2B1B14] mb-2">Access Restricted</h1>
+              <h1 className="text-2xl font-bold text-[#1A1108] mb-2">Access Restricted</h1>
               <p className="text-gray-500 mb-2">
                 This section is only accessible to{" "}
-                <strong className="text-[#E86A2A]">Admin</strong> users.
+                <strong className="text-[#BF4E19]">Admin</strong> users.
               </p>
               <p className="text-sm text-gray-400 mb-6">
                 Your current role is <strong>{sessionUser.role}</strong>. Contact your admin to request access.
               </p>
               <a
                 href="/manager"
-                className="inline-flex items-center gap-2 bg-[#E86A2A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#C94F16] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#BF4E19] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#A33D10] transition-colors"
               >
                 Back to Dashboard
               </a>

@@ -130,7 +130,7 @@ export default function AttendanceClient({ employees, todayRecords, monthRecords
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#2B1B14]">Attendance</h1>
+          <h1 className="text-2xl font-bold text-[#1A1108]">Attendance</h1>
           <p className="text-gray-500 text-sm mt-0.5">{format(new Date(today), "EEEE, MMMM d, yyyy")}</p>
         </div>
       </div>
@@ -140,7 +140,7 @@ export default function AttendanceClient({ employees, todayRecords, monthRecords
         {([["mark","Mark Today"],["monthly","Monthly View"]] as const).map(([t,l]) => (
           <button key={t} onClick={() => setActiveTab(t)}
             className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-              activeTab === t ? "bg-[#E86A2A] text-white shadow-sm" : "text-gray-500 hover:text-[#2B1B14]"}`}>
+              activeTab === t ? "bg-[#BF4E19] text-white shadow-sm" : "text-gray-500 hover:text-[#1A1108]"}`}>
             {l}
           </button>
         ))}
@@ -167,7 +167,7 @@ export default function AttendanceClient({ employees, todayRecords, monthRecords
 
           {/* Quick mark all */}
           <div className="flex items-center gap-3 bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-            <span className="text-sm font-semibold text-[#2B1B14] mr-2">Mark all as:</span>
+            <span className="text-sm font-semibold text-[#1A1108] mr-2">Mark all as:</span>
             {STATUSES.map(s => (
               <button key={s.value} onClick={() => markAll(s.value)}
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors ${s.color}`}>
@@ -184,11 +184,11 @@ export default function AttendanceClient({ employees, todayRecords, monthRecords
               return (
                 <div key={emp.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                   <div className="flex items-center gap-4 p-4">
-                    <div className="w-9 h-9 bg-[#E86A2A] rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0">
+                    <div className="w-9 h-9 bg-[#BF4E19] rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0">
                       {emp.name.charAt(0)}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-[#2B1B14] text-sm">{emp.name}</p>
+                      <p className="font-semibold text-[#1A1108] text-sm">{emp.name}</p>
                       <p className="text-xs text-gray-400">{emp.employee_id} · {emp.role}</p>
                     </div>
                     {/* Status buttons */}
@@ -206,7 +206,7 @@ export default function AttendanceClient({ employees, todayRecords, monthRecords
                       })}
                     </div>
                     <button onClick={() => setEditEmp(isExpanded ? null : emp.id)}
-                      className="p-1.5 rounded-lg text-gray-400 hover:text-[#E86A2A] transition-colors ml-1">
+                      className="p-1.5 rounded-lg text-gray-400 hover:text-[#BF4E19] transition-colors ml-1">
                       {isExpanded ? <X className="w-4 h-4" /> : <Clock className="w-4 h-4" />}
                     </button>
                   </div>
@@ -219,14 +219,14 @@ export default function AttendanceClient({ employees, todayRecords, monthRecords
                           </label>
                           <input type="time" value={(entry as any)[field]}
                             onChange={e => setDayEntries(p => ({ ...p, [emp.id]: { ...entry, [field]: e.target.value } }))}
-                            className="w-full px-3 py-2 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                            className="w-full px-3 py-2 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                         </div>
                       ))}
                       <div className="col-span-1">
                         <label className="block text-xs font-semibold text-gray-500 mb-1">Remarks</label>
                         <input value={entry.remarks} onChange={e => setDayEntries(p => ({ ...p, [emp.id]: { ...entry, remarks: e.target.value } }))}
                           placeholder="Optional"
-                          className="w-full px-3 py-2 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                          className="w-full px-3 py-2 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                       </div>
                     </div>
                   )}
@@ -244,7 +244,7 @@ export default function AttendanceClient({ employees, todayRecords, monthRecords
 
           {employees.length > 0 && (
             <button onClick={saveAttendance} disabled={saving}
-              className="flex items-center gap-2 bg-[#E86A2A] text-white px-8 py-3.5 rounded-2xl font-semibold hover:bg-[#C94F16] transition-colors disabled:opacity-60 shadow-md">
+              className="flex items-center gap-2 bg-[#BF4E19] text-white px-8 py-3.5 rounded-2xl font-semibold hover:bg-[#A33D10] transition-colors disabled:opacity-60 shadow-md">
               <Save className="w-4 h-4" />
               {saving ? "Saving..." : `Save Attendance — ${format(new Date(today), "MMM d")}`}
             </button>
@@ -257,15 +257,15 @@ export default function AttendanceClient({ employees, todayRecords, monthRecords
         <>
           <div className="flex items-center gap-4 bg-white rounded-2xl p-4 shadow-sm border border-gray-100 w-fit">
             <button onClick={() => setViewMonth(p => subMonths(p, 1))}
-              className="p-2 rounded-xl hover:bg-[#FFF7ED] transition-colors">
-              <ChevronLeft className="w-5 h-5 text-[#2B1B14]" />
+              className="p-2 rounded-xl hover:bg-[#FAF3E8] transition-colors">
+              <ChevronLeft className="w-5 h-5 text-[#1A1108]" />
             </button>
-            <h2 className="font-bold text-[#2B1B14] min-w-[160px] text-center">
+            <h2 className="font-bold text-[#1A1108] min-w-[160px] text-center">
               {format(viewMonth, "MMMM yyyy")}
             </h2>
             <button onClick={() => setViewMonth(p => addMonths(p, 1))}
-              className="p-2 rounded-xl hover:bg-[#FFF7ED] transition-colors">
-              <ChevronRight className="w-5 h-5 text-[#2B1B14]" />
+              className="p-2 rounded-xl hover:bg-[#FAF3E8] transition-colors">
+              <ChevronRight className="w-5 h-5 text-[#1A1108]" />
             </button>
           </div>
 
@@ -274,16 +274,16 @@ export default function AttendanceClient({ employees, todayRecords, monthRecords
               <div key={emp.id} className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 bg-[#E86A2A] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    <div className="w-9 h-9 bg-[#BF4E19] rounded-full flex items-center justify-center text-white font-bold text-sm">
                       {emp.name.charAt(0)}
                     </div>
                     <div>
-                      <p className="font-semibold text-[#2B1B14]">{emp.name}</p>
+                      <p className="font-semibold text-[#1A1108]">{emp.name}</p>
                       <p className="text-xs text-gray-400">{emp.role}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-[#E86A2A]">{pct}%</div>
+                    <div className="text-2xl font-bold text-[#BF4E19]">{pct}%</div>
                     <div className="text-xs text-gray-400">attendance</div>
                   </div>
                 </div>
@@ -304,7 +304,7 @@ export default function AttendanceClient({ employees, todayRecords, monthRecords
                     const rec = monthRecordMap[emp.id]?.[dateStr];
                     return (
                       <div key={dateStr} title={`${format(day,"MMM d")}: ${rec?.status ?? "no record"}`}
-                        className={`w-5 h-5 rounded-full ${rec ? STATUS_MINI[rec.status] : "bg-gray-100"} ${isToday(day) ? "ring-2 ring-[#E86A2A]" : ""}`} />
+                        className={`w-5 h-5 rounded-full ${rec ? STATUS_MINI[rec.status] : "bg-gray-100"} ${isToday(day) ? "ring-2 ring-[#BF4E19]" : ""}`} />
                     );
                   })}
                 </div>

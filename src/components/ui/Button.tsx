@@ -19,17 +19,17 @@ export function Button({
   ...props
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E86A2A] focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed select-none";
+    "inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BF4E19] focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed select-none";
 
   const variants = {
     primary:
-      "bg-[#E86A2A] text-white hover:bg-[#C94F16] active:scale-[0.98] shadow-sm hover:shadow-md",
+      "bg-[#BF4E19] text-white hover:bg-[#A33D10] active:scale-[0.98] shadow-sm hover:shadow-md",
     secondary:
-      "bg-[#2B1B14] text-white hover:bg-[#5C3D2E] active:scale-[0.98]",
+      "bg-[#1A1108] text-white hover:bg-[#3D2B1A] active:scale-[0.98]",
     outline:
-      "border-2 border-[#E86A2A] text-[#E86A2A] hover:bg-[#E86A2A] hover:text-white active:scale-[0.98]",
+      "border-2 border-[#BF4E19] text-[#BF4E19] hover:bg-[#BF4E19] hover:text-white active:scale-[0.98]",
     ghost:
-      "text-[#2B1B14] hover:bg-[#F5EBDD] active:scale-[0.98]",
+      "text-[#1A1108] hover:bg-[#F2E6D0] active:scale-[0.98]",
     danger:
       "bg-red-500 text-white hover:bg-red-600 active:scale-[0.98]",
   };

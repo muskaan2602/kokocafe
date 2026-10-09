@@ -36,23 +36,23 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${playfair.variable}`}
     >
-      <body className="min-h-screen bg-[#FFF7ED] text-[#2B1B14] antialiased">
+      <body className="min-h-screen bg-[#FAF3E8] text-[#1A1108] antialiased">
         {children}
         <Toaster
           position="top-center"
           toastOptions={{
             duration: 3000,
             style: {
-              background: "#2B1B14",
-              color: "#FFF7ED",
+              background: "#1A1108",
+              color: "#FAF3E8",
               borderRadius: "12px",
               fontFamily: "var(--font-inter)",
             },
             success: {
-              iconTheme: { primary: "#E86A2A", secondary: "#FFF7ED" },
+              iconTheme: { primary: "#BF4E19", secondary: "#FAF3E8" },
             },
             error: {
-              iconTheme: { primary: "#ef4444", secondary: "#FFF7ED" },
+              iconTheme: { primary: "#ef4444", secondary: "#FAF3E8" },
             },
           }}
         />

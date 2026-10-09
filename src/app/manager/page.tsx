@@ -74,7 +74,7 @@ export default async function ManagerDashboard() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[#2B1B14]">Dashboard</h1>
+        <h1 className="text-2xl font-bold text-[#1A1108]">Dashboard</h1>
         <p className="text-gray-500 text-sm mt-0.5">{format(new Date(), "EEEE, MMMM d, yyyy")}</p>
       </div>
 
@@ -99,15 +99,15 @@ export default async function ManagerDashboard() {
             { label:"Total Orders",  value: totalOrdersToday,          icon: ShoppingBag,  color:"bg-blue-50 text-blue-600"     },
             { label:"Revenue (₹)",   value: formatPrice(totalRevenue),  icon: IndianRupee,  color:"bg-green-50 text-green-600"   },
             { label:"Pending",       value: pendingCount,               icon: Clock,        color:"bg-yellow-50 text-yellow-600" },
-            { label:"Preparing",     value: preparingCount,             icon: ChefHat,      color:"bg-orange-50 text-[#E86A2A]"  },
+            { label:"Preparing",     value: preparingCount,             icon: ChefHat,      color:"bg-orange-50 text-[#BF4E19]"  },
             { label:"Completed",     value: completedCount,             icon: CheckCircle2, color:"bg-emerald-50 text-emerald-600"},
           ].map(({ label, value, icon: Icon, color }) => (
             <div key={label} className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
               <div className={`w-10 h-10 ${color} rounded-xl flex items-center justify-center mb-3`}>
                 <Icon className="w-5 h-5" />
               </div>
-              <div className="text-2xl font-bold text-[#2B1B14]">{value}</div>
-              <div className="text-sm font-medium text-[#2B1B14] mt-0.5">{label}</div>
+              <div className="text-2xl font-bold text-[#1A1108]">{value}</div>
+              <div className="text-sm font-medium text-[#1A1108] mt-0.5">{label}</div>
             </div>
           ))}
         </div>
@@ -127,10 +127,10 @@ export default async function ManagerDashboard() {
               <div className={`w-10 h-10 ${color} rounded-xl flex items-center justify-center mb-3`}>
                 <Icon className="w-5 h-5" />
               </div>
-              <div className="text-2xl font-bold text-[#2B1B14]">{value}</div>
-              <div className="text-sm font-medium text-[#2B1B14] mt-0.5 flex items-center justify-between">
+              <div className="text-2xl font-bold text-[#1A1108]">{value}</div>
+              <div className="text-sm font-medium text-[#1A1108] mt-0.5 flex items-center justify-between">
                 {label}
-                <ArrowRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-[#E86A2A] transition-colors" />
+                <ArrowRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-[#BF4E19] transition-colors" />
               </div>
             </Link>
           ))}
@@ -142,18 +142,18 @@ export default async function ManagerDashboard() {
         {/* Active Orders */}
         <div className="lg:col-span-2 bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-bold text-[#2B1B14]">Active Orders</h2>
-            <Link href="/manager/orders" className="text-sm text-[#E86A2A] font-medium flex items-center gap-1 hover:gap-2 transition-all">
+            <h2 className="font-bold text-[#1A1108]">Active Orders</h2>
+            <Link href="/manager/orders" className="text-sm text-[#BF4E19] font-medium flex items-center gap-1 hover:gap-2 transition-all">
               View all <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
           {(pendingOrders ?? []).length > 0 ? (
             <div className="space-y-3">
               {(pendingOrders ?? []).map((order: any) => (
-                <div key={order.id} className="flex items-center justify-between p-4 bg-[#FFF7ED] rounded-xl border border-[#F5EBDD]">
+                <div key={order.id} className="flex items-center justify-between p-4 bg-[#FAF3E8] rounded-xl border border-[#F2E6D0]">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-[#2B1B14]">#{order.order_number}</span>
+                      <span className="font-bold text-[#1A1108]">#{order.order_number}</span>
                       <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${statusColors[order.status]}`}>
                         {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
                       </span>
@@ -163,7 +163,7 @@ export default async function ManagerDashboard() {
                     </p>
                   </div>
                   <div className="text-right">
-                    <div className="font-bold text-[#E86A2A]">{formatPrice(order.total)}</div>
+                    <div className="font-bold text-[#BF4E19]">{formatPrice(order.total)}</div>
                     <div className="text-xs text-gray-400">{format(new Date(order.created_at), "hh:mm a")}</div>
                   </div>
                 </div>
@@ -182,8 +182,8 @@ export default async function ManagerDashboard() {
           {/* Table status */}
           <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-bold text-[#2B1B14]">Tables</h2>
-              <Link href="/manager/tables" className="text-sm text-[#E86A2A] font-medium flex items-center gap-1 hover:gap-2 transition-all">
+              <h2 className="font-bold text-[#1A1108]">Tables</h2>
+              <Link href="/manager/tables" className="text-sm text-[#BF4E19] font-medium flex items-center gap-1 hover:gap-2 transition-all">
                 Manage <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -205,13 +205,13 @@ export default async function ManagerDashboard() {
           {actualLowStock.length > 0 && (
             <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
               <div className="flex items-center justify-between mb-3">
-                <h2 className="font-bold text-[#2B1B14]">Low Stock</h2>
-                <Link href="/manager/inventory" className="text-sm text-[#E86A2A] font-medium">View all →</Link>
+                <h2 className="font-bold text-[#1A1108]">Low Stock</h2>
+                <Link href="/manager/inventory" className="text-sm text-[#BF4E19] font-medium">View all →</Link>
               </div>
               <div className="space-y-2">
                 {actualLowStock.slice(0, 5).map((item: any) => (
                   <div key={item.id} className="flex items-center justify-between text-sm">
-                    <span className="text-[#2B1B14] font-medium truncate flex-1">{item.name}</span>
+                    <span className="text-[#1A1108] font-medium truncate flex-1">{item.name}</span>
                     <span className={`ml-2 text-xs font-semibold shrink-0 ${item.current_stock <= 0 ? "text-red-600" : "text-yellow-600"}`}>
                       {item.current_stock} {item.unit}
                     </span>
@@ -227,8 +227,8 @@ export default async function ManagerDashboard() {
       {(recentTransactions ?? []).length > 0 && (
         <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-bold text-[#2B1B14]">Recent Employee Transactions</h2>
-            <Link href="/manager/payouts" className="text-sm text-[#E86A2A] font-medium flex items-center gap-1">
+            <h2 className="font-bold text-[#1A1108]">Recent Employee Transactions</h2>
+            <Link href="/manager/payouts" className="text-sm text-[#BF4E19] font-medium flex items-center gap-1">
               View all <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -243,12 +243,12 @@ export default async function ManagerDashboard() {
                     {t.type.slice(0,2).toUpperCase()}
                   </div>
                   <div>
-                    <p className="font-medium text-[#2B1B14]">{t.employee?.name ?? "—"}</p>
+                    <p className="font-medium text-[#1A1108]">{t.employee?.name ?? "—"}</p>
                     <p className="text-xs text-gray-400 capitalize">{t.type} · {t.payment_method?.replace("_"," ")}</p>
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="font-bold text-[#2B1B14]">{formatPrice(t.amount)}</p>
+                  <p className="font-bold text-[#1A1108]">{formatPrice(t.amount)}</p>
                   <p className="text-xs text-gray-400">{format(new Date(t.created_at), "MMM d")}</p>
                 </div>
               </div>

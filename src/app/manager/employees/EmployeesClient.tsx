@@ -116,11 +116,11 @@ export default function EmployeesClient({ employees: init }: { employees: Employ
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#2B1B14]">Employees</h1>
+          <h1 className="text-2xl font-bold text-[#1A1108]">Employees</h1>
           <p className="text-gray-500 text-sm mt-0.5">{activeCount} active · {employees.length} total</p>
         </div>
         <button onClick={openAdd}
-          className="flex items-center gap-2 bg-[#E86A2A] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#C94F16] transition-colors">
+          className="flex items-center gap-2 bg-[#BF4E19] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#A33D10] transition-colors">
           <Plus className="w-4 h-4" /> Add Employee
         </button>
       </div>
@@ -130,19 +130,19 @@ export default function EmployeesClient({ employees: init }: { employees: Employ
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search name, ID or phone..."
-            className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+            className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
         </div>
         <div className="flex gap-2">
           {(["active","inactive","all"] as const).map(s => (
             <button key={s} onClick={() => setFilterStatus(s)}
               className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors capitalize ${
-                filterStatus === s ? "bg-[#E86A2A] text-white" : "bg-white border border-gray-200 text-gray-600 hover:border-[#E86A2A]"}`}>
+                filterStatus === s ? "bg-[#BF4E19] text-white" : "bg-white border border-gray-200 text-gray-600 hover:border-[#BF4E19]"}`}>
               {s}
             </button>
           ))}
         </div>
         <select value={filterRole} onChange={e => setFilterRole(e.target.value)}
-          className="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]">
+          className="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]">
           <option value="All">All Roles</option>
           {ROLES.map(r => <option key={r} value={r}>{r}</option>)}
         </select>
@@ -153,14 +153,14 @@ export default function EmployeesClient({ employees: init }: { employees: Employ
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-[#FFF7ED] text-left">
-                <th className="px-5 py-3.5 font-semibold text-[#2B1B14]">Employee</th>
-                <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Role</th>
-                <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Phone</th>
-                <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Salary</th>
-                <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Joined</th>
-                <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Status</th>
-                <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Actions</th>
+              <tr className="bg-[#FAF3E8] text-left">
+                <th className="px-5 py-3.5 font-semibold text-[#1A1108]">Employee</th>
+                <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Role</th>
+                <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Phone</th>
+                <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Salary</th>
+                <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Joined</th>
+                <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Status</th>
+                <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
@@ -168,11 +168,11 @@ export default function EmployeesClient({ employees: init }: { employees: Employ
                 <tr key={emp.id} className={`hover:bg-gray-50 ${emp.status === "inactive" ? "opacity-60" : ""}`}>
                   <td className="px-5 py-3.5">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 bg-[#E86A2A] rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0">
+                      <div className="w-9 h-9 bg-[#BF4E19] rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0">
                         {emp.name.charAt(0).toUpperCase()}
                       </div>
                       <div>
-                        <div className="font-semibold text-[#2B1B14]">{emp.name}</div>
+                        <div className="font-semibold text-[#1A1108]">{emp.name}</div>
                         <div className="text-xs text-gray-400">{emp.employee_id}</div>
                       </div>
                     </div>
@@ -183,7 +183,7 @@ export default function EmployeesClient({ employees: init }: { employees: Employ
                     </span>
                   </td>
                   <td className="px-4 py-3.5 text-gray-600">{emp.phone ?? "—"}</td>
-                  <td className="px-4 py-3.5 font-semibold text-[#E86A2A]">{formatPrice(emp.monthly_salary)}</td>
+                  <td className="px-4 py-3.5 font-semibold text-[#BF4E19]">{formatPrice(emp.monthly_salary)}</td>
                   <td className="px-4 py-3.5 text-gray-500 text-xs">
                     {format(new Date(emp.joining_date), "MMM d, yyyy")}
                   </td>
@@ -196,11 +196,11 @@ export default function EmployeesClient({ employees: init }: { employees: Employ
                   <td className="px-4 py-3.5">
                     <div className="flex items-center gap-2">
                       <Link href={`/manager/employees/${emp.id}`}
-                        className="p-2 rounded-lg text-gray-400 hover:text-[#E86A2A] hover:bg-[#FFF7ED] transition-colors" title="View profile">
+                        className="p-2 rounded-lg text-gray-400 hover:text-[#BF4E19] hover:bg-[#FAF3E8] transition-colors" title="View profile">
                         <ChevronRight className="w-4 h-4" />
                       </Link>
                       <button onClick={() => openEdit(emp)}
-                        className="p-2 rounded-lg text-gray-400 hover:text-[#E86A2A] hover:bg-[#FFF7ED] transition-colors" title="Edit">
+                        className="p-2 rounded-lg text-gray-400 hover:text-[#BF4E19] hover:bg-[#FAF3E8] transition-colors" title="Edit">
                         <Pencil className="w-4 h-4" />
                       </button>
                       <button onClick={() => toggleStatus(emp)}
@@ -231,74 +231,74 @@ export default function EmployeesClient({ employees: init }: { employees: Employ
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setModal(null)} />
           <div className="relative bg-white rounded-3xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl p-6">
             <div className="flex items-center justify-between mb-5">
-              <h2 className="font-bold text-[#2B1B14] text-xl">{modal === "add" ? "Add Employee" : "Edit Employee"}</h2>
+              <h2 className="font-bold text-[#1A1108] text-xl">{modal === "add" ? "Add Employee" : "Edit Employee"}</h2>
               <button onClick={() => setModal(null)}><X className="w-5 h-5 text-gray-400" /></button>
             </div>
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Employee ID *</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Employee ID *</label>
                   <input value={form.employee_id} onChange={e => setForm({ ...form, employee_id: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Full Name *</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Full Name *</label>
                   <input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
                     placeholder="e.g. Rahul Sharma"
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Role</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Role</label>
                   <select value={form.role} onChange={e => setForm({ ...form, role: e.target.value as EmployeeRole })}
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]">
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]">
                     {ROLES.map(r => <option key={r} value={r}>{r}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Monthly Salary (₹)</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Monthly Salary (₹)</label>
                   <input type="number" min="0" value={form.monthly_salary}
                     onChange={e => setForm({ ...form, monthly_salary: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Phone</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Phone</label>
                   <input value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Email</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Email</label>
                   <input type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Joining Date</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Joining Date</label>
                   <input type="date" value={form.joining_date} onChange={e => setForm({ ...form, joining_date: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Leaving Date</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Leaving Date</label>
                   <input type="date" value={form.leaving_date} onChange={e => setForm({ ...form, leaving_date: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Address</label>
+                <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Address</label>
                 <textarea rows={2} value={form.address} onChange={e => setForm({ ...form, address: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A] resize-none" />
+                  className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19] resize-none" />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Notes</label>
+                <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Notes</label>
                 <textarea rows={2} value={form.notes} onChange={e => setForm({ ...form, notes: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A] resize-none" />
+                  className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19] resize-none" />
               </div>
               <button onClick={save} disabled={saving}
-                className="w-full bg-[#E86A2A] text-white py-3.5 rounded-2xl font-semibold hover:bg-[#C94F16] transition-colors disabled:opacity-60">
+                className="w-full bg-[#BF4E19] text-white py-3.5 rounded-2xl font-semibold hover:bg-[#A33D10] transition-colors disabled:opacity-60">
                 {saving ? "Saving..." : modal === "add" ? "Add Employee" : "Update Employee"}
               </button>
             </div>

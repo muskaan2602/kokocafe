@@ -1,35 +1,38 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* KOKO Brand Colors */
-  --color-koko-orange: #E86A2A;
-  --color-koko-orange-dark: #C94F16;
-  --color-koko-orange-light: #F28A50;
-  --color-koko-cream: #FFF7ED;
-  --color-koko-beige: #F5EBDD;
-  --color-koko-beige-dark: #E8D5C0;
-  --color-koko-brown: #2B1B14;
-  --color-koko-brown-light: #5C3D2E;
-  --color-koko-brown-mid: #8B5E44;
-  --color-koko-white: #FFFFFF;
+  /* ── KOKO Brand Colors — Burnt Orange · Warm Ivory · Soft Black ── */
+
+  /* Burnt Orange */
+  --color-koko-orange:       #BF4E19;   /* primary CTA, buttons, accents      */
+  --color-koko-orange-dark:  #A33D10;   /* hover states                        */
+  --color-koko-orange-light: #D4601F;   /* lighter variant                     */
+  --color-koko-orange-pale:  #F5DDD0;   /* tinted backgrounds                  */
+
+  /* Warm Ivory */
+  --color-koko-cream:        #FAF3E8;   /* page background                     */
+  --color-koko-beige:        #F2E6D0;   /* card / surface background           */
+  --color-koko-beige-dark:   #E8D5B7;   /* borders, dividers                   */
+  --color-koko-white:        #FFFDF8;   /* pure white with warm tint           */
+
+  /* Soft Black */
+  --color-koko-brown:        #1A1108;   /* primary text, sidebar bg            */
+  --color-koko-brown-light:  #3D2B1A;   /* secondary text, dark surfaces       */
+  --color-koko-brown-mid:    #6B4C35;   /* muted text, placeholders            */
 
   /* Typography */
-  --font-sans: var(--font-inter);
+  --font-sans:    var(--font-inter);
   --font-display: var(--font-playfair);
 }
 
 :root {
-  --background: #FFF7ED;
-  --foreground: #2B1B14;
+  --background: #FAF3E8;
+  --foreground: #1A1108;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--background);
@@ -39,23 +42,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #F5EBDD;
-}
-::-webkit-scrollbar-thumb {
-  background: #C94F16;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #E86A2A;
-}
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: #F2E6D0; }
+::-webkit-scrollbar-thumb  { background: #A33D10; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #BF4E19; }
 
-/* Utility animations */
+/* ── Animations ── */
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -65,8 +58,8 @@ body {
   to   { opacity: 1; }
 }
 @keyframes pulse-orange {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(232, 106, 42, 0.4); }
-  50%       { box-shadow: 0 0 0 10px rgba(232, 106, 42, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(191, 78, 25, 0.4); }
+  50%       { box-shadow: 0 0 0 10px rgba(191, 78, 25, 0); }
 }
 @keyframes bounceIn {
   0%   { transform: scale(0.85); opacity: 0; }
@@ -74,12 +67,12 @@ body {
   100% { transform: scale(1); }
 }
 
-.animate-slide-up   { animation: slideUp 0.4s ease forwards; }
-.animate-fade-in    { animation: fadeIn 0.3s ease forwards; }
-.animate-pulse-orange { animation: pulse-orange 2s infinite; }
-.animate-bounce-in  { animation: bounceIn 0.4s ease forwards; }
+.animate-slide-up    { animation: slideUp 0.4s ease forwards; }
+.animate-fade-in     { animation: fadeIn 0.3s ease forwards; }
+.animate-pulse-orange{ animation: pulse-orange 2s infinite; }
+.animate-bounce-in   { animation: bounceIn 0.4s ease forwards; }
 
-/* Line clamp */
+/* ── Line clamp ── */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -93,14 +86,14 @@ body {
   overflow: hidden;
 }
 
-/* Focus styles */
+/* ── Focus ── */
 *:focus-visible {
-  outline: 2px solid #E86A2A;
+  outline: 2px solid #BF4E19;
   outline-offset: 2px;
 }
 
-/* Print styles for QR codes */
+/* ── Print ── */
 @media print {
-  .no-print { display: none !important; }
+  .no-print   { display: none !important; }
   .print-only { display: block !important; }
 }

@@ -99,11 +99,11 @@ export default function EmployeeProfileClient({ employee: emp, transactions: ini
       {/* Back + header */}
       <div className="flex items-center gap-4">
         <Link href="/manager/employees"
-          className="p-2 rounded-xl hover:bg-[#F5EBDD] transition-colors text-[#2B1B14]">
+          className="p-2 rounded-xl hover:bg-[#F2E6D0] transition-colors text-[#1A1108]">
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div className="flex-1">
-          <h1 className="text-2xl font-bold text-[#2B1B14]">{emp.name}</h1>
+          <h1 className="text-2xl font-bold text-[#1A1108]">{emp.name}</h1>
           <p className="text-gray-500 text-sm">{emp.employee_id} · {emp.role}</p>
         </div>
         <span className={`text-xs font-semibold px-3 py-1.5 rounded-full ${
@@ -117,7 +117,7 @@ export default function EmployeeProfileClient({ employee: emp, transactions: ini
         {tabs.map(t => (
           <button key={t} onClick={() => setTab(t)}
             className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all capitalize ${
-              tab === t ? "bg-[#E86A2A] text-white shadow-sm" : "text-gray-500 hover:text-[#2B1B14]"}`}>
+              tab === t ? "bg-[#BF4E19] text-white shadow-sm" : "text-gray-500 hover:text-[#1A1108]"}`}>
             {t}
           </button>
         ))}
@@ -127,7 +127,7 @@ export default function EmployeeProfileClient({ employee: emp, transactions: ini
       {tab === "overview" && (
         <div className="grid lg:grid-cols-2 gap-6">
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-4">
-            <h3 className="font-bold text-[#2B1B14]">Personal Details</h3>
+            <h3 className="font-bold text-[#1A1108]">Personal Details</h3>
             {[
               { icon: Phone, label: "Phone", value: emp.phone ?? "Not provided" },
               { icon: Mail, label: "Email", value: emp.email ?? "Not provided" },
@@ -136,17 +136,17 @@ export default function EmployeeProfileClient({ employee: emp, transactions: ini
               ...(emp.leaving_date ? [{ icon: Calendar, label: "Left", value: format(new Date(emp.leaving_date), "MMMM d, yyyy") }] : []),
             ].map(({ icon: Icon, label, value }) => (
               <div key={label} className="flex items-start gap-3">
-                <div className="w-8 h-8 bg-[#FFF7ED] rounded-lg flex items-center justify-center shrink-0">
-                  <Icon className="w-4 h-4 text-[#E86A2A]" />
+                <div className="w-8 h-8 bg-[#FAF3E8] rounded-lg flex items-center justify-center shrink-0">
+                  <Icon className="w-4 h-4 text-[#BF4E19]" />
                 </div>
                 <div>
                   <p className="text-xs text-gray-400">{label}</p>
-                  <p className="text-sm font-medium text-[#2B1B14]">{value}</p>
+                  <p className="text-sm font-medium text-[#1A1108]">{value}</p>
                 </div>
               </div>
             ))}
             {emp.notes && (
-              <div className="mt-2 p-3 bg-[#FFF7ED] rounded-xl text-sm text-[#5C3D2E]">
+              <div className="mt-2 p-3 bg-[#FAF3E8] rounded-xl text-sm text-[#3D2B1A]">
                 📝 {emp.notes}
               </div>
             )}
@@ -155,10 +155,10 @@ export default function EmployeeProfileClient({ employee: emp, transactions: ini
           <div className="space-y-4">
             {/* Salary summary */}
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-              <h3 className="font-bold text-[#2B1B14] mb-4">Salary Summary</h3>
+              <h3 className="font-bold text-[#1A1108] mb-4">Salary Summary</h3>
               <div className="space-y-3">
                 {[
-                  { label: "Monthly Salary", value: formatPrice(emp.monthly_salary), color: "text-[#2B1B14]" },
+                  { label: "Monthly Salary", value: formatPrice(emp.monthly_salary), color: "text-[#1A1108]" },
                   { label: "Total Advances", value: formatPrice(totalAdvances), color: "text-orange-600" },
                   { label: "Total Paid (Salary)", value: formatPrice(totalPaid), color: "text-green-600" },
                   { label: "Total Bonus", value: formatPrice(totalBonus), color: "text-purple-600" },
@@ -174,8 +174,8 @@ export default function EmployeeProfileClient({ employee: emp, transactions: ini
 
             {/* Attendance summary */}
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-              <h3 className="font-bold text-[#2B1B14] mb-4">Attendance (recent)</h3>
-              <div className="text-3xl font-bold text-[#E86A2A] mb-1">{attPct}%</div>
+              <h3 className="font-bold text-[#1A1108] mb-4">Attendance (recent)</h3>
+              <div className="text-3xl font-bold text-[#BF4E19] mb-1">{attPct}%</div>
               <p className="text-xs text-gray-400 mb-3">Attendance rate</p>
               <div className="grid grid-cols-3 gap-2">
                 {[["present","Present",attStats.present||0],["absent","Absent",attStats.absent||0],
@@ -198,18 +198,18 @@ export default function EmployeeProfileClient({ employee: emp, transactions: ini
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-[#FFF7ED] text-left">
-                  <th className="px-5 py-3.5 font-semibold text-[#2B1B14]">Date</th>
-                  <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Status</th>
-                  <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Check In</th>
-                  <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Check Out</th>
-                  <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Remarks</th>
+                <tr className="bg-[#FAF3E8] text-left">
+                  <th className="px-5 py-3.5 font-semibold text-[#1A1108]">Date</th>
+                  <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Status</th>
+                  <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Check In</th>
+                  <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Check Out</th>
+                  <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Remarks</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
                 {attendance.map(a => (
                   <tr key={a.id} className="hover:bg-gray-50">
-                    <td className="px-5 py-3 font-medium text-[#2B1B14]">
+                    <td className="px-5 py-3 font-medium text-[#1A1108]">
                       {format(new Date(a.date), "EEE, MMM d, yyyy")}
                     </td>
                     <td className="px-4 py-3">
@@ -235,9 +235,9 @@ export default function EmployeeProfileClient({ employee: emp, transactions: ini
       {tab === "salary" && (
         <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <h3 className="font-bold text-[#2B1B14]">Salary & Advances</h3>
+            <h3 className="font-bold text-[#1A1108]">Salary & Advances</h3>
             <button onClick={() => setTxnModal(true)}
-              className="flex items-center gap-2 bg-[#E86A2A] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#C94F16] transition-colors">
+              className="flex items-center gap-2 bg-[#BF4E19] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#A33D10] transition-colors">
               <Plus className="w-4 h-4" /> Record Payment
             </button>
           </div>
@@ -245,7 +245,7 @@ export default function EmployeeProfileClient({ employee: emp, transactions: ini
           {/* Summary cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { label: "Monthly Salary", value: formatPrice(emp.monthly_salary), color: "bg-[#FFF7ED] text-[#E86A2A]" },
+              { label: "Monthly Salary", value: formatPrice(emp.monthly_salary), color: "bg-[#FAF3E8] text-[#BF4E19]" },
               { label: "Total Advances", value: formatPrice(totalAdvances), color: "bg-orange-50 text-orange-600" },
               { label: "Salary Paid", value: formatPrice(totalPaid), color: "bg-green-50 text-green-600" },
               { label: "Net Due", value: formatPrice(Math.max(0, emp.monthly_salary - totalAdvances - totalPaid + totalDeductions - totalBonus)), color: "bg-blue-50 text-blue-600" },
@@ -262,13 +262,13 @@ export default function EmployeeProfileClient({ employee: emp, transactions: ini
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="bg-[#FFF7ED] text-left">
-                    <th className="px-5 py-3.5 font-semibold text-[#2B1B14]">Date</th>
-                    <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Type</th>
-                    <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Amount</th>
-                    <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Method</th>
-                    <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Month</th>
-                    <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Note</th>
+                  <tr className="bg-[#FAF3E8] text-left">
+                    <th className="px-5 py-3.5 font-semibold text-[#1A1108]">Date</th>
+                    <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Type</th>
+                    <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Amount</th>
+                    <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Method</th>
+                    <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Month</th>
+                    <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Note</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
@@ -280,7 +280,7 @@ export default function EmployeeProfileClient({ employee: emp, transactions: ini
                           {t.type}
                         </span>
                       </td>
-                      <td className="px-4 py-3 font-semibold text-[#2B1B14]">{formatPrice(t.amount)}</td>
+                      <td className="px-4 py-3 font-semibold text-[#1A1108]">{formatPrice(t.amount)}</td>
                       <td className="px-4 py-3 text-gray-500 capitalize text-xs">{t.payment_method.replace("_"," ")}</td>
                       <td className="px-4 py-3 text-gray-400 text-xs">{t.reference_month ?? "—"}</td>
                       <td className="px-4 py-3 text-gray-400 text-xs">{t.description ?? "—"}</td>
@@ -306,12 +306,12 @@ export default function EmployeeProfileClient({ employee: emp, transactions: ini
                   {t.type.slice(0,2).toUpperCase()}
                 </div>
                 <div>
-                  <p className="font-semibold text-[#2B1B14] capitalize">{t.type}</p>
+                  <p className="font-semibold text-[#1A1108] capitalize">{t.type}</p>
                   <p className="text-xs text-gray-400">{t.description ?? "—"} · {t.payment_method.replace("_"," ")}</p>
                 </div>
               </div>
               <div className="text-right shrink-0">
-                <p className="font-bold text-[#2B1B14]">{formatPrice(t.amount)}</p>
+                <p className="font-bold text-[#1A1108]">{formatPrice(t.amount)}</p>
                 <p className="text-xs text-gray-400">{format(new Date(t.created_at), "MMM d, yyyy")}</p>
               </div>
             </div>
@@ -330,7 +330,7 @@ export default function EmployeeProfileClient({ employee: emp, transactions: ini
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setTxnModal(false)} />
           <div className="relative bg-white rounded-3xl w-full max-w-md shadow-2xl p-6">
             <div className="flex items-center justify-between mb-5">
-              <h2 className="font-bold text-[#2B1B14] text-lg">Record Payment</h2>
+              <h2 className="font-bold text-[#1A1108] text-lg">Record Payment</h2>
               <button onClick={() => setTxnModal(false)}><X className="w-5 h-5 text-gray-400" /></button>
             </div>
             <div className="space-y-4">
@@ -339,38 +339,38 @@ export default function EmployeeProfileClient({ employee: emp, transactions: ini
                 {(["advance","salary","bonus","deduction","other"] as TransactionType[]).map(t => (
                   <button key={t} onClick={() => setTxnForm(f => ({ ...f, type: t }))}
                     className={`py-2 rounded-xl text-xs font-semibold capitalize transition-colors ${
-                      txnForm.type === t ? "bg-[#E86A2A] text-white" : "bg-[#FFF7ED] text-[#5C3D2E] hover:bg-[#F5EBDD]"}`}>
+                      txnForm.type === t ? "bg-[#BF4E19] text-white" : "bg-[#FAF3E8] text-[#3D2B1A] hover:bg-[#F2E6D0]"}`}>
                     {t}
                   </button>
                 ))}
               </div>
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Amount (₹) *</label>
+                <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Amount (₹) *</label>
                 <input type="number" min="1" value={txnForm.amount} onChange={e => setTxnForm(f => ({ ...f, amount: e.target.value }))}
-                  className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                  className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Payment Method</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Payment Method</label>
                   <select value={txnForm.payment_method} onChange={e => setTxnForm(f => ({ ...f, payment_method: e.target.value as PaymentMethod }))}
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]">
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]">
                     {PAYMENT_METHODS.map(m => <option key={m.value} value={m.value}>{m.label}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Reference Month</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Reference Month</label>
                   <input type="month" value={txnForm.reference_month} onChange={e => setTxnForm(f => ({ ...f, reference_month: e.target.value }))}
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Description</label>
+                <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Description</label>
                 <input value={txnForm.description} onChange={e => setTxnForm(f => ({ ...f, description: e.target.value }))}
                   placeholder="e.g. September salary, advance for medical..."
-                  className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                  className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
               </div>
               <button onClick={saveTxn} disabled={saving}
-                className="w-full bg-[#E86A2A] text-white py-3.5 rounded-2xl font-semibold hover:bg-[#C94F16] disabled:opacity-60 transition-colors">
+                className="w-full bg-[#BF4E19] text-white py-3.5 rounded-2xl font-semibold hover:bg-[#A33D10] disabled:opacity-60 transition-colors">
                 {saving ? "Saving..." : "Record Payment"}
               </button>
             </div>

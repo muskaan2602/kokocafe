@@ -27,24 +27,24 @@ export default function ManagerHeader({ user }: Props) {
     <header className="bg-white border-b border-gray-200 px-6 py-3.5 flex items-center justify-between">
       {/* Mobile logo */}
       <div className="flex items-center gap-2 lg:hidden">
-        <div className="w-8 h-8 bg-[#E86A2A] rounded-xl flex items-center justify-center">
+        <div className="w-8 h-8 bg-[#BF4E19] rounded-xl flex items-center justify-center">
           <Coffee className="w-4 h-4 text-white" />
         </div>
-        <span className="font-display font-bold text-[#2B1B14]">KOKO</span>
+        <span className="font-display font-bold text-[#1A1108]">KOKO</span>
       </div>
 
       {/* Desktop welcome */}
       <div className="hidden lg:flex items-center gap-3">
         <div>
           <p className="text-xs text-gray-400">Welcome back</p>
-          <p className="font-semibold text-[#2B1B14] text-sm leading-none mt-0.5">
+          <p className="font-semibold text-[#1A1108] text-sm leading-none mt-0.5">
             {user.email}
           </p>
         </div>
         {/* Role badge */}
         <span className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full ${
           isAdmin
-            ? "bg-[#E86A2A]/10 text-[#E86A2A] border border-[#E86A2A]/20"
+            ? "bg-[#BF4E19]/10 text-[#BF4E19] border border-[#BF4E19]/20"
             : "bg-gray-100 text-gray-600 border border-gray-200"
         }`}>
           {isAdmin
@@ -57,7 +57,7 @@ export default function ManagerHeader({ user }: Props) {
       <div className="flex items-center gap-2">
         {/* Mobile role badge */}
         <span className={`flex lg:hidden items-center gap-1 text-xs font-semibold px-2 py-1 rounded-full ${
-          isAdmin ? "bg-[#E86A2A]/10 text-[#E86A2A]" : "bg-gray-100 text-gray-500"}`}>
+          isAdmin ? "bg-[#BF4E19]/10 text-[#BF4E19]" : "bg-gray-100 text-gray-500"}`}>
           {isAdmin ? <ShieldCheck className="w-3 h-3" /> : <Shield className="w-3 h-3" />}
           {isAdmin ? "Admin" : "Manager"}
         </span>
@@ -71,7 +71,7 @@ export default function ManagerHeader({ user }: Props) {
 
         <button
           onClick={handleLogout}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#FFF7ED] text-[#E86A2A] text-sm font-semibold hover:bg-[#F5EBDD] transition-colors"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#FAF3E8] text-[#BF4E19] text-sm font-semibold hover:bg-[#F2E6D0] transition-colors"
         >
           <LogOut className="w-4 h-4" />
           <span className="hidden sm:block">Sign Out</span>

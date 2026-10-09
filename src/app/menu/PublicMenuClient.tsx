@@ -32,13 +32,13 @@ export default function PublicMenuClient({ categories, menuItems }: Props) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Search */}
       <div className="relative max-w-md mx-auto mb-8">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8B5E44]" />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B4C35]" />
         <input
           type="text"
           placeholder="Search menu..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-11 pr-4 py-3 bg-white border border-[#E8D5C0] rounded-2xl text-sm text-[#2B1B14] placeholder:text-[#8B5E44] focus:outline-none focus:ring-2 focus:ring-[#E86A2A] focus:border-transparent"
+          className="w-full pl-11 pr-4 py-3 bg-white border border-[#E8D5B7] rounded-2xl text-sm text-[#1A1108] placeholder:text-[#6B4C35] focus:outline-none focus:ring-2 focus:ring-[#BF4E19] focus:border-transparent"
         />
       </div>
 
@@ -50,8 +50,8 @@ export default function PublicMenuClient({ categories, menuItems }: Props) {
             onClick={() => setActiveCategory(cat)}
             className={`flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-semibold transition-all ${
               activeCategory === cat
-                ? "bg-[#E86A2A] text-white shadow-md"
-                : "bg-white text-[#5C3D2E] border border-[#E8D5C0] hover:border-[#E86A2A] hover:text-[#E86A2A]"
+                ? "bg-[#BF4E19] text-white shadow-md"
+                : "bg-white text-[#3D2B1A] border border-[#E8D5B7] hover:border-[#BF4E19] hover:text-[#BF4E19]"
             }`}
           >
             {cat}
@@ -61,7 +61,7 @@ export default function PublicMenuClient({ categories, menuItems }: Props) {
 
       {/* Grid */}
       {filtered.length === 0 ? (
-        <div className="text-center py-20 text-[#8B5E44]">
+        <div className="text-center py-20 text-[#6B4C35]">
           <Search className="w-12 h-12 mx-auto mb-3 opacity-30" />
           <p className="text-lg font-medium">No items found</p>
           <p className="text-sm mt-1">Try a different category or search term</p>
@@ -83,18 +83,18 @@ export default function PublicMenuClient({ categories, menuItems }: Props) {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
                 ) : (
-                  <div className="w-full h-full bg-[#F5EBDD] flex items-center justify-center text-4xl">
+                  <div className="w-full h-full bg-[#F2E6D0] flex items-center justify-center text-4xl">
                     ☕
                   </div>
                 )}
                 {!item.is_available && (
                   <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                    <span className="bg-white text-[#2B1B14] text-xs font-semibold px-3 py-1.5 rounded-full">
+                    <span className="bg-white text-[#1A1108] text-xs font-semibold px-3 py-1.5 rounded-full">
                       Currently Unavailable
                     </span>
                   </div>
                 )}
-                <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[#E86A2A] text-xs font-semibold px-2 py-1 rounded-full">
+                <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[#BF4E19] text-xs font-semibold px-2 py-1 rounded-full">
                   {item.category?.name}
                 </div>
                 {item.is_veg && (
@@ -104,12 +104,12 @@ export default function PublicMenuClient({ categories, menuItems }: Props) {
                 )}
               </div>
               <div className="p-4">
-                <h3 className="font-semibold text-[#2B1B14] mb-1">{item.name}</h3>
-                <p className="text-[#8B5E44] text-xs line-clamp-2 mb-3">
+                <h3 className="font-semibold text-[#1A1108] mb-1">{item.name}</h3>
+                <p className="text-[#6B4C35] text-xs line-clamp-2 mb-3">
                   {item.description}
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-[#E86A2A] font-bold text-lg">
+                  <span className="text-[#BF4E19] font-bold text-lg">
                     {formatPrice(item.price)}
                   </span>
                 </div>
@@ -120,17 +120,17 @@ export default function PublicMenuClient({ categories, menuItems }: Props) {
       )}
 
       {/* CTA */}
-      <div className="mt-16 bg-[#2B1B14] rounded-3xl p-8 text-center">
-        <QrCode className="w-10 h-10 text-[#E86A2A] mx-auto mb-4" />
+      <div className="mt-16 bg-[#1A1108] rounded-3xl p-8 text-center">
+        <QrCode className="w-10 h-10 text-[#BF4E19] mx-auto mb-4" />
         <h3 className="font-display text-2xl font-bold text-white mb-2">
           Ready to order?
         </h3>
-        <p className="text-[#8B5E44] mb-5">
+        <p className="text-[#6B4C35] mb-5">
           Scan the QR code on your table to order directly from your phone.
         </p>
         <Link
           href="/order"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-[#E86A2A] text-white rounded-xl font-semibold hover:bg-[#C94F16] transition-colors"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-[#BF4E19] text-white rounded-xl font-semibold hover:bg-[#A33D10] transition-colors"
         >
           Order from Your Table
         </Link>

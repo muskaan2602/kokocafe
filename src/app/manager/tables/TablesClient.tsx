@@ -45,7 +45,7 @@ export default function TablesClient({ tables: initialTables, activeOrders }: Pr
             {
               width: 300,
               margin: 2,
-              color: { dark: "#2B1B14", light: "#FFFFFF" },
+              color: { dark: "#1A1108", light: "#FFFFFF" },
             }
           );
         } catch {}
@@ -75,13 +75,13 @@ export default function TablesClient({ tables: initialTables, activeOrders }: Pr
         <head>
           <title>KOKO QR – ${tableLabel}</title>
           <style>
-            body { font-family: sans-serif; text-align: center; padding: 40px; background: #FFF7ED; }
+            body { font-family: sans-serif; text-align: center; padding: 40px; background: #FAF3E8; }
             .card { display: inline-block; background: white; border-radius: 20px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-            h1 { font-size: 28px; font-weight: 900; color: #2B1B14; margin: 0; }
-            h2 { font-size: 16px; color: #8B5E44; margin: 4px 0 20px; }
+            h1 { font-size: 28px; font-weight: 900; color: #1A1108; margin: 0; }
+            h2 { font-size: 16px; color: #6B4C35; margin: 4px 0 20px; }
             img { width: 220px; height: 220px; display: block; margin: 0 auto 20px; }
-            p { color: #5C3D2E; font-size: 14px; margin: 0; }
-            .table-badge { background: #E86A2A; color: white; font-size: 22px; font-weight: 800; padding: 8px 24px; border-radius: 12px; display: inline-block; margin-top: 12px; }
+            p { color: #3D2B1A; font-size: 14px; margin: 0; }
+            .table-badge { background: #BF4E19; color: white; font-size: 22px; font-weight: 800; padding: 8px 24px; border-radius: 12px; display: inline-block; margin-top: 12px; }
           </style>
         </head>
         <body>
@@ -153,7 +153,7 @@ export default function TablesClient({ tables: initialTables, activeOrders }: Pr
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#2B1B14]">
+          <h1 className="text-2xl font-bold text-[#1A1108]">
             Table & QR Management
           </h1>
           <p className="text-gray-500 text-sm mt-0.5">
@@ -162,7 +162,7 @@ export default function TablesClient({ tables: initialTables, activeOrders }: Pr
         </div>
         <button
           onClick={() => setAdding(!adding)}
-          className="flex items-center gap-2 bg-[#E86A2A] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#C94F16] transition-colors"
+          className="flex items-center gap-2 bg-[#BF4E19] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#A33D10] transition-colors"
         >
           <Plus className="w-4 h-4" />
           Add Table
@@ -172,20 +172,20 @@ export default function TablesClient({ tables: initialTables, activeOrders }: Pr
       {/* Add table form */}
       {adding && (
         <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
-          <h3 className="font-semibold text-[#2B1B14] mb-3">New Table</h3>
+          <h3 className="font-semibold text-[#1A1108] mb-3">New Table</h3>
           <div className="flex gap-3">
             <input
               type="text"
               value={newTableNumber}
               onChange={(e) => setNewTableNumber(e.target.value)}
               placeholder="e.g. T11"
-              className="flex-1 px-4 py-2.5 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm text-[#2B1B14] focus:outline-none focus:ring-2 focus:ring-[#E86A2A]"
+              className="flex-1 px-4 py-2.5 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm text-[#1A1108] focus:outline-none focus:ring-2 focus:ring-[#BF4E19]"
               onKeyDown={(e) => e.key === "Enter" && addTable()}
             />
             <button
               onClick={addTable}
               disabled={saving}
-              className="bg-[#E86A2A] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#C94F16] transition-colors disabled:opacity-60"
+              className="bg-[#BF4E19] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#A33D10] transition-colors disabled:opacity-60"
             >
               {saving ? "Saving..." : "Add"}
             </button>
@@ -213,8 +213,8 @@ export default function TablesClient({ tables: initialTables, activeOrders }: Pr
               {/* Table header */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Table2 className="w-5 h-5 text-[#E86A2A]" />
-                  <span className="font-bold text-[#2B1B14]">
+                  <Table2 className="w-5 h-5 text-[#BF4E19]" />
+                  <span className="font-bold text-[#1A1108]">
                     Table {table.table_number.replace(/\D/g, "").padStart(2, "0")}
                   </span>
                 </div>
@@ -222,7 +222,7 @@ export default function TablesClient({ tables: initialTables, activeOrders }: Pr
                   {table.status !== "available" && (
                     <button
                       onClick={() => resetTableStatus(table.id)}
-                      className="p-1.5 text-gray-400 hover:text-[#E86A2A] transition-colors"
+                      className="p-1.5 text-gray-400 hover:text-[#BF4E19] transition-colors"
                       title="Reset to available"
                     >
                       <RefreshCw className="w-3.5 h-3.5" />
@@ -251,7 +251,7 @@ export default function TablesClient({ tables: initialTables, activeOrders }: Pr
               </div>
 
               {/* QR code */}
-              <div className="flex justify-center bg-[#FFF7ED] rounded-2xl p-4">
+              <div className="flex justify-center bg-[#FAF3E8] rounded-2xl p-4">
                 {qrDataUrls[table.id] ? (
                   <img
                     src={qrDataUrls[table.id]}
@@ -259,13 +259,13 @@ export default function TablesClient({ tables: initialTables, activeOrders }: Pr
                     className="w-36 h-36"
                   />
                 ) : (
-                  <div className="w-36 h-36 bg-[#F5EBDD] rounded-xl flex items-center justify-center">
-                    <QrCode className="w-12 h-12 text-[#E8D5C0]" />
+                  <div className="w-36 h-36 bg-[#F2E6D0] rounded-xl flex items-center justify-center">
+                    <QrCode className="w-12 h-12 text-[#E8D5B7]" />
                   </div>
                 )}
               </div>
 
-              <p className="text-xs text-center text-[#8B5E44]">
+              <p className="text-xs text-center text-[#6B4C35]">
                 /order/{table.qr_token}
               </p>
 
@@ -274,14 +274,14 @@ export default function TablesClient({ tables: initialTables, activeOrders }: Pr
                 <button
                   onClick={() => downloadQR(table.id, table.table_number)}
                   disabled={!qrDataUrls[table.id]}
-                  className="flex-1 flex items-center justify-center gap-1.5 py-2.5 bg-[#FFF7ED] text-[#E86A2A] rounded-xl text-xs font-semibold hover:bg-[#F5EBDD] transition-colors disabled:opacity-40"
+                  className="flex-1 flex items-center justify-center gap-1.5 py-2.5 bg-[#FAF3E8] text-[#BF4E19] rounded-xl text-xs font-semibold hover:bg-[#F2E6D0] transition-colors disabled:opacity-40"
                 >
                   <Download className="w-3.5 h-3.5" /> Download
                 </button>
                 <button
                   onClick={() => printQR(table.id, table.table_number)}
                   disabled={!qrDataUrls[table.id]}
-                  className="flex-1 flex items-center justify-center gap-1.5 py-2.5 bg-[#2B1B14] text-white rounded-xl text-xs font-semibold hover:bg-[#5C3D2E] transition-colors disabled:opacity-40"
+                  className="flex-1 flex items-center justify-center gap-1.5 py-2.5 bg-[#1A1108] text-white rounded-xl text-xs font-semibold hover:bg-[#3D2B1A] transition-colors disabled:opacity-40"
                 >
                   <Printer className="w-3.5 h-3.5" /> Print
                 </button>

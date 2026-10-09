@@ -24,8 +24,8 @@ interface Props {
 const ACCESS_MAP = {
   admin: {
     label: "Admin",
-    color: "bg-[#E86A2A]/10 text-[#E86A2A] border-[#E86A2A]/20",
-    dot: "bg-[#E86A2A]",
+    color: "bg-[#BF4E19]/10 text-[#BF4E19] border-[#BF4E19]/20",
+    dot: "bg-[#BF4E19]",
     icon: ShieldCheck,
     access: [
       "✅ Dashboard & Analytics",
@@ -173,14 +173,14 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#2B1B14]">Staff Accounts</h1>
+          <h1 className="text-2xl font-bold text-[#1A1108]">Staff Accounts</h1>
           <p className="text-gray-500 text-sm mt-0.5">
             {profiles.length} account{profiles.length !== 1 ? "s" : ""} · Admin-only section
           </p>
         </div>
         <button
           onClick={() => setCreateModal(true)}
-          className="flex items-center gap-2 bg-[#E86A2A] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#C94F16] transition-colors"
+          className="flex items-center gap-2 bg-[#BF4E19] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#A33D10] transition-colors"
         >
           <Plus className="w-4 h-4" /> Add Account
         </button>
@@ -198,7 +198,7 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
                   <Icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-[#2B1B14]">{cfg.label}</h3>
+                  <h3 className="font-bold text-[#1A1108]">{cfg.label}</h3>
                   <p className="text-xs text-gray-400">Dashboard access level</p>
                 </div>
               </div>
@@ -219,12 +219,12 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-[#FFF7ED] text-left">
-                <th className="px-5 py-3.5 font-semibold text-[#2B1B14]">Email</th>
-                <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Role</th>
-                <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Payouts Access</th>
-                <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Created</th>
-                <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Actions</th>
+              <tr className="bg-[#FAF3E8] text-left">
+                <th className="px-5 py-3.5 font-semibold text-[#1A1108]">Email</th>
+                <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Role</th>
+                <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Payouts Access</th>
+                <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Created</th>
+                <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
@@ -236,13 +236,13 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
                   <tr key={profile.id} className="hover:bg-gray-50">
                     <td className="px-5 py-3.5">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-[#E86A2A] rounded-full flex items-center justify-center text-white font-bold text-xs">
+                        <div className="w-8 h-8 bg-[#BF4E19] rounded-full flex items-center justify-center text-white font-bold text-xs">
                           {profile.email.charAt(0).toUpperCase()}
                         </div>
                         <div>
-                          <p className="font-medium text-[#2B1B14]">{profile.email}</p>
+                          <p className="font-medium text-[#1A1108]">{profile.email}</p>
                           {isSelf && (
-                            <p className="text-xs text-[#E86A2A] font-medium">You</p>
+                            <p className="text-xs text-[#BF4E19] font-medium">You</p>
                           )}
                         </div>
                       </div>
@@ -271,7 +271,7 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => openEdit(profile)}
-                          className="p-2 rounded-lg text-gray-400 hover:text-[#E86A2A] hover:bg-[#FFF7ED] transition-colors"
+                          className="p-2 rounded-lg text-gray-400 hover:text-[#BF4E19] hover:bg-[#FAF3E8] transition-colors"
                           title="Edit role / reset password"
                         >
                           <Pencil className="w-4 h-4" />
@@ -309,7 +309,7 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setCreateModal(false)} />
           <div className="relative bg-white rounded-3xl w-full max-w-md shadow-2xl p-6">
             <div className="flex items-center justify-between mb-5">
-              <h2 className="font-bold text-[#2B1B14] text-xl">Create Staff Account</h2>
+              <h2 className="font-bold text-[#1A1108] text-xl">Create Staff Account</h2>
               <button onClick={() => setCreateModal(false)}>
                 <X className="w-5 h-5 text-gray-400" />
               </button>
@@ -318,7 +318,7 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
             <div className="space-y-4">
               {/* Role selector */}
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-2">Role</label>
+                <label className="block text-sm font-semibold text-[#1A1108] mb-2">Role</label>
                 <div className="grid grid-cols-2 gap-3">
                   {(["manager", "admin"] as const).map(r => {
                     const cfg = ACCESS_MAP[r];
@@ -329,13 +329,13 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
                         onClick={() => setCreateForm(f => ({ ...f, role: r }))}
                         className={`flex items-center gap-2 p-3 rounded-2xl border-2 text-left transition-all ${
                           createForm.role === r
-                            ? "border-[#E86A2A] bg-[#FFF7ED]"
+                            ? "border-[#BF4E19] bg-[#FAF3E8]"
                             : "border-gray-200 hover:border-gray-300"
                         }`}
                       >
-                        <Icon className={`w-5 h-5 ${createForm.role === r ? "text-[#E86A2A]" : "text-gray-400"}`} />
+                        <Icon className={`w-5 h-5 ${createForm.role === r ? "text-[#BF4E19]" : "text-gray-400"}`} />
                         <div>
-                          <p className={`text-sm font-semibold ${createForm.role === r ? "text-[#E86A2A]" : "text-[#2B1B14]"}`}>
+                          <p className={`text-sm font-semibold ${createForm.role === r ? "text-[#BF4E19]" : "text-[#1A1108]"}`}>
                             {cfg.label}
                           </p>
                           <p className="text-xs text-gray-400">
@@ -349,12 +349,12 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
               </div>
 
               {/* Access preview for selected role */}
-              <div className="bg-[#FFF7ED] rounded-2xl p-4 text-xs space-y-1">
-                <p className="font-semibold text-[#2B1B14] mb-2">
+              <div className="bg-[#FAF3E8] rounded-2xl p-4 text-xs space-y-1">
+                <p className="font-semibold text-[#1A1108] mb-2">
                   {ACCESS_MAP[createForm.role].label} can access:
                 </p>
                 {ACCESS_MAP[createForm.role].access.slice(0, 5).map(a => (
-                  <p key={a} className={a.startsWith("🔒") ? "text-gray-400" : "text-[#5C3D2E]"}>{a}</p>
+                  <p key={a} className={a.startsWith("🔒") ? "text-gray-400" : "text-[#3D2B1A]"}>{a}</p>
                 ))}
                 {createForm.role === "manager" && (
                   <p className="text-gray-400">🔒 Payouts, Reports, Staff Accounts (Admin only)</p>
@@ -362,48 +362,48 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Email Address</label>
+                <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Email Address</label>
                 <input
                   type="email"
                   value={createForm.email}
                   onChange={e => setCreateForm(f => ({ ...f, email: e.target.value }))}
                   placeholder="staff@kokocafe.in"
-                  className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]"
+                  className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Password</label>
+                <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Password</label>
                 <div className="relative">
                   <input
                     type={showPw ? "text" : "password"}
                     value={createForm.password}
                     onChange={e => setCreateForm(f => ({ ...f, password: e.target.value }))}
                     placeholder="Min 6 characters"
-                    className="w-full px-4 py-3 pr-12 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]"
+                    className="w-full px-4 py-3 pr-12 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]"
                   />
                   <button type="button" onClick={() => setShowPw(p => !p)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#8B5E44]">
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6B4C35]">
                     {showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Confirm Password</label>
+                <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Confirm Password</label>
                 <input
                   type="password"
                   value={createForm.confirmPassword}
                   onChange={e => setCreateForm(f => ({ ...f, confirmPassword: e.target.value }))}
                   placeholder="Re-enter password"
-                  className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]"
+                  className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]"
                 />
               </div>
 
               <button
                 onClick={createStaff}
                 disabled={saving}
-                className="w-full bg-[#E86A2A] text-white py-3.5 rounded-2xl font-semibold hover:bg-[#C94F16] transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+                className="w-full bg-[#BF4E19] text-white py-3.5 rounded-2xl font-semibold hover:bg-[#A33D10] transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
               >
                 {saving ? (
                   <><span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" /> Creating...</>
@@ -423,7 +423,7 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
           <div className="relative bg-white rounded-3xl w-full max-w-md shadow-2xl p-6">
             <div className="flex items-center justify-between mb-5">
               <div>
-                <h2 className="font-bold text-[#2B1B14] text-xl">Edit Account</h2>
+                <h2 className="font-bold text-[#1A1108] text-xl">Edit Account</h2>
                 <p className="text-sm text-gray-400 mt-0.5">{editModal.email}</p>
               </div>
               <button onClick={() => setEditModal(null)}>
@@ -434,7 +434,7 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
             <div className="space-y-4">
               {/* Role */}
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-2">Change Role</label>
+                <label className="block text-sm font-semibold text-[#1A1108] mb-2">Change Role</label>
                 <div className="grid grid-cols-2 gap-3">
                   {(["manager", "admin"] as const).map(r => {
                     const cfg = ACCESS_MAP[r];
@@ -445,12 +445,12 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
                         onClick={() => setEditForm(f => ({ ...f, role: r }))}
                         className={`flex items-center gap-2 p-3 rounded-2xl border-2 text-left transition-all ${
                           editForm.role === r
-                            ? "border-[#E86A2A] bg-[#FFF7ED]"
+                            ? "border-[#BF4E19] bg-[#FAF3E8]"
                             : "border-gray-200 hover:border-gray-300"
                         }`}
                       >
-                        <Icon className={`w-5 h-5 ${editForm.role === r ? "text-[#E86A2A]" : "text-gray-400"}`} />
-                        <p className={`text-sm font-semibold ${editForm.role === r ? "text-[#E86A2A]" : "text-[#2B1B14]"}`}>
+                        <Icon className={`w-5 h-5 ${editForm.role === r ? "text-[#BF4E19]" : "text-gray-400"}`} />
+                        <p className={`text-sm font-semibold ${editForm.role === r ? "text-[#BF4E19]" : "text-[#1A1108]"}`}>
                           {cfg.label}
                         </p>
                       </button>
@@ -461,7 +461,7 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
 
               {/* Reset password */}
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">
+                <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">
                   <KeyRound className="w-4 h-4 inline mr-1" />
                   Reset Password{" "}
                   <span className="font-normal text-gray-400">(leave blank to keep current)</span>
@@ -472,10 +472,10 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
                     value={editForm.newPassword}
                     onChange={e => setEditForm(f => ({ ...f, newPassword: e.target.value }))}
                     placeholder="New password"
-                    className="w-full px-4 py-3 pr-12 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]"
+                    className="w-full px-4 py-3 pr-12 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]"
                   />
                   <button type="button" onClick={() => setShowNewPw(p => !p)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#8B5E44]">
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6B4C35]">
                     {showNewPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
@@ -483,13 +483,13 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
 
               {editForm.newPassword && (
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Confirm New Password</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Confirm New Password</label>
                   <input
                     type="password"
                     value={editForm.confirmNewPassword}
                     onChange={e => setEditForm(f => ({ ...f, confirmNewPassword: e.target.value }))}
                     placeholder="Re-enter new password"
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]"
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]"
                   />
                 </div>
               )}
@@ -497,7 +497,7 @@ export default function StaffClient({ profiles: init, currentUserId }: Props) {
               <button
                 onClick={updateStaff}
                 disabled={saving}
-                className="w-full bg-[#E86A2A] text-white py-3.5 rounded-2xl font-semibold hover:bg-[#C94F16] transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+                className="w-full bg-[#BF4E19] text-white py-3.5 rounded-2xl font-semibold hover:bg-[#A33D10] transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
               >
                 {saving ? (
                   <><span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" /> Saving...</>

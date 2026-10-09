@@ -85,17 +85,17 @@ export default function PayoutsClient({ employees, transactions: initTxns, curre
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#2B1B14]">Employee Payouts</h1>
+          <h1 className="text-2xl font-bold text-[#1A1108]">Employee Payouts</h1>
           <p className="text-gray-500 text-sm mt-0.5">Salary, advances and payment tracking</p>
         </div>
         <input type="month" value={filterMonth} onChange={e => setFilterMonth(e.target.value)}
-          className="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+          className="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
       </div>
 
       {/* Summary cards */}
       <div className="grid grid-cols-3 gap-4">
         {[
-          { label:"Total Payroll",  value: formatPrice(totalPayroll),  color:"bg-[#FFF7ED] text-[#E86A2A]",  icon: DollarSign   },
+          { label:"Total Payroll",  value: formatPrice(totalPayroll),  color:"bg-[#FAF3E8] text-[#BF4E19]",  icon: DollarSign   },
           { label:"Paid This Month",value: formatPrice(totalPaidOut),  color:"bg-green-50 text-green-600",   icon: CheckCircle2 },
           { label:"Still Due",      value: formatPrice(totalDue),      color:"bg-red-50   text-red-600",     icon: AlertCircle  },
         ].map(({ label, value, color, icon: Icon }) => (
@@ -117,16 +117,16 @@ export default function PayoutsClient({ employees, transactions: initTxns, curre
               {/* Employee header */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-[#E86A2A] rounded-full flex items-center justify-center text-white font-bold">
+                  <div className="w-10 h-10 bg-[#BF4E19] rounded-full flex items-center justify-center text-white font-bold">
                     {emp.name.charAt(0)}
                   </div>
                   <div>
-                    <p className="font-bold text-[#2B1B14]">{emp.name}</p>
+                    <p className="font-bold text-[#1A1108]">{emp.name}</p>
                     <p className="text-xs text-gray-400">{emp.employee_id} · {emp.role}</p>
                   </div>
                 </div>
                 <Link href={`/manager/employees/${emp.id}`}
-                  className="text-xs text-[#E86A2A] hover:underline flex items-center gap-1">
+                  className="text-xs text-[#BF4E19] hover:underline flex items-center gap-1">
                   Profile <ChevronRight className="w-3 h-3" />
                 </Link>
               </div>
@@ -134,7 +134,7 @@ export default function PayoutsClient({ employees, transactions: initTxns, curre
               {/* Salary breakdown */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
                 {[
-                  { label:"Monthly Salary",  value: formatPrice(emp.monthly_salary),  c:"bg-gray-50 text-[#2B1B14]" },
+                  { label:"Monthly Salary",  value: formatPrice(emp.monthly_salary),  c:"bg-gray-50 text-[#1A1108]" },
                   { label:"Advance (month)", value: formatPrice(monthAdvances),        c:"bg-orange-50 text-orange-700" },
                   { label:"Paid (month)",    value: formatPrice(monthPaid),            c:"bg-green-50 text-green-700" },
                   { label:"Net Due",         value: formatPrice(netDue),               c: netDue > 0 ? "bg-red-50 text-red-700" : "bg-green-50 text-green-600" },
@@ -157,7 +157,7 @@ export default function PayoutsClient({ employees, transactions: initTxns, curre
                         </span>
                         <span className="text-gray-500 text-xs">{t.description ?? format(new Date(t.created_at),"dd MMM")}</span>
                       </div>
-                      <span className="font-semibold text-[#2B1B14]">{formatPrice(t.amount)}</span>
+                      <span className="font-semibold text-[#1A1108]">{formatPrice(t.amount)}</span>
                     </div>
                   ))}
                 </div>
@@ -200,7 +200,7 @@ export default function PayoutsClient({ employees, transactions: initTxns, curre
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setModal(null)} />
           <div className="relative bg-white rounded-3xl w-full max-w-md shadow-2xl p-6">
             <div className="flex items-center justify-between mb-5">
-              <h2 className="font-bold text-[#2B1B14] text-lg capitalize">
+              <h2 className="font-bold text-[#1A1108] text-lg capitalize">
                 {modal.type} — {modal.emp.name}
               </h2>
               <button onClick={() => setModal(null)}><X className="w-5 h-5 text-gray-400" /></button>
@@ -211,43 +211,43 @@ export default function PayoutsClient({ employees, transactions: initTxns, curre
                 {(["salary","advance","bonus","deduction","other"] as TransactionType[]).map(t => (
                   <button key={t} onClick={() => setModal(m => m ? { ...m, type: t } : null)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-semibold capitalize transition-colors ${
-                      modal.type === t ? "bg-[#E86A2A] text-white" : "bg-[#FFF7ED] text-[#5C3D2E] hover:bg-[#F5EBDD]"}`}>
+                      modal.type === t ? "bg-[#BF4E19] text-white" : "bg-[#FAF3E8] text-[#3D2B1A] hover:bg-[#F2E6D0]"}`}>
                     {t}
                   </button>
                 ))}
               </div>
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Amount (₹) *</label>
+                <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Amount (₹) *</label>
                 <input type="number" min="1" value={form.amount}
                   onChange={e => setForm(f => ({ ...f, amount: e.target.value }))}
-                  className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                  className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Method</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Method</label>
                   <select value={form.payment_method} onChange={e => setForm(f => ({ ...f, payment_method: e.target.value as PaymentMethod }))}
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]">
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]">
                     {PAYMENT_METHODS.map(m => <option key={m.value} value={m.value}>{m.label}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Month</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Month</label>
                   <input type="month" value={form.reference_month}
                     onChange={e => setForm(f => ({ ...f, reference_month: e.target.value }))}
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Description</label>
+                <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Description</label>
                 <input value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))}
                   placeholder="Optional note..."
-                  className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                  className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
               </div>
-              <div className="bg-[#FFF7ED] rounded-xl p-3 text-sm text-[#5C3D2E]">
+              <div className="bg-[#FAF3E8] rounded-xl p-3 text-sm text-[#3D2B1A]">
                 <strong>{modal.emp.name}</strong> · Monthly Salary: {formatPrice(modal.emp.monthly_salary)}
               </div>
               <button onClick={save} disabled={saving}
-                className="w-full bg-[#E86A2A] text-white py-3.5 rounded-2xl font-semibold hover:bg-[#C94F16] transition-colors disabled:opacity-60">
+                className="w-full bg-[#BF4E19] text-white py-3.5 rounded-2xl font-semibold hover:bg-[#A33D10] transition-colors disabled:opacity-60">
                 {saving ? "Saving..." : "Record Payment"}
               </button>
             </div>

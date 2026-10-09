@@ -203,14 +203,14 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#2B1B14]">Delivery Orders</h1>
+          <h1 className="text-2xl font-bold text-[#1A1108]">Delivery Orders</h1>
           <p className="text-gray-500 text-sm mt-0.5">
             Zomato · Swiggy · Phone · Takeaway — all in one place
           </p>
         </div>
         <button
           onClick={() => { resetForm(); setShowForm(true); }}
-          className="flex items-center gap-2 bg-[#E86A2A] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#C94F16] transition-colors shadow-sm"
+          className="flex items-center gap-2 bg-[#BF4E19] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#A33D10] transition-colors shadow-sm"
         >
           <Plus className="w-4 h-4" /> New Delivery Order
         </button>
@@ -219,14 +219,14 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
       {/* Today stats */}
       <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
         <div className="col-span-2 sm:col-span-1 bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-          <div className="text-2xl font-bold text-[#E86A2A]">{formatPrice(todayRevenue)}</div>
+          <div className="text-2xl font-bold text-[#BF4E19]">{formatPrice(todayRevenue)}</div>
           <div className="text-xs text-gray-500 mt-0.5">Today's Revenue</div>
         </div>
         {SOURCES.map(s => {
           const count = todayOrders.filter((o: any) => o.order_source === s.value).length;
           return (
             <div key={s.value} className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-              <div className="text-xl font-bold text-[#2B1B14]">{s.emoji} {count}</div>
+              <div className="text-xl font-bold text-[#1A1108]">{s.emoji} {count}</div>
               <div className="text-xs text-gray-500 mt-0.5">{s.label}</div>
             </div>
           );
@@ -239,7 +239,7 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
           {["active", "completed"].map(s => (
             <button key={s} onClick={() => setFilterStatus(s)}
               className={`px-4 py-2 rounded-lg text-sm font-semibold capitalize transition-colors ${
-                filterStatus === s ? "bg-[#E86A2A] text-white" : "text-gray-500 hover:text-[#2B1B14]"}`}>
+                filterStatus === s ? "bg-[#BF4E19] text-white" : "text-gray-500 hover:text-[#1A1108]"}`}>
               {s}
             </button>
           ))}
@@ -247,13 +247,13 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
         <div className="flex gap-1 bg-white rounded-xl p-1 border border-gray-200 flex-wrap">
           <button onClick={() => setFilterSource("all")}
             className={`px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
-              filterSource === "all" ? "bg-[#2B1B14] text-white" : "text-gray-500 hover:text-[#2B1B14]"}`}>
+              filterSource === "all" ? "bg-[#1A1108] text-white" : "text-gray-500 hover:text-[#1A1108]"}`}>
             All
           </button>
           {SOURCES.map(s => (
             <button key={s.value} onClick={() => setFilterSource(s.value)}
               className={`px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
-                filterSource === s.value ? "bg-[#2B1B14] text-white" : "text-gray-500 hover:text-[#2B1B14]"}`}>
+                filterSource === s.value ? "bg-[#1A1108] text-white" : "text-gray-500 hover:text-[#1A1108]"}`}>
               {s.emoji} {s.label}
             </button>
           ))}
@@ -281,7 +281,7 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
                 <div className="flex items-start justify-between gap-2">
                   <div>
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-bold text-[#2B1B14]">#{order.order_number}</span>
+                      <span className="font-bold text-[#1A1108]">#{order.order_number}</span>
                       <SourceBadge source={order.order_source} />
                     </div>
                     {order.customer_name && (
@@ -309,15 +309,15 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
                 </div>
 
                 {/* Items */}
-                <div className="bg-[#FFF7ED] rounded-2xl p-3 space-y-1">
+                <div className="bg-[#FAF3E8] rounded-2xl p-3 space-y-1">
                   {order.order_items?.map((item: any) => (
                     <div key={item.id} className="flex justify-between text-sm">
-                      <span className="text-[#5C3D2E]">{item.quantity} × {item.item_name}</span>
-                      <span className="font-medium text-[#2B1B14]">{formatPrice(item.price * item.quantity)}</span>
+                      <span className="text-[#3D2B1A]">{item.quantity} × {item.item_name}</span>
+                      <span className="font-medium text-[#1A1108]">{formatPrice(item.price * item.quantity)}</span>
                     </div>
                   ))}
                   {order.notes && (
-                    <p className="text-xs text-[#8B5E44] pt-1 border-t border-[#F5EBDD] mt-1">
+                    <p className="text-xs text-[#6B4C35] pt-1 border-t border-[#F2E6D0] mt-1">
                       📝 {order.notes}
                     </p>
                   )}
@@ -331,9 +331,9 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
                   <div className="flex justify-between text-gray-500">
                     <span>GST (5%)</span><span>{formatPrice(order.tax)}</span>
                   </div>
-                  <div className="flex justify-between font-bold text-[#2B1B14] pt-1 border-t border-gray-100 text-base">
+                  <div className="flex justify-between font-bold text-[#1A1108] pt-1 border-t border-gray-100 text-base">
                     <span>Total</span>
-                    <span className="text-[#E86A2A]">{formatPrice(order.total)}</span>
+                    <span className="text-[#BF4E19]">{formatPrice(order.total)}</span>
                   </div>
                 </div>
 
@@ -343,7 +343,7 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
                     <button
                       onClick={() => updateStatus(order.id, nextStatus)}
                       disabled={updating === order.id}
-                      className="flex-1 flex items-center justify-center gap-2 bg-[#E86A2A] text-white py-3 rounded-2xl text-sm font-bold hover:bg-[#C94F16] transition-colors disabled:opacity-60"
+                      className="flex-1 flex items-center justify-center gap-2 bg-[#BF4E19] text-white py-3 rounded-2xl text-sm font-bold hover:bg-[#A33D10] transition-colors disabled:opacity-60"
                     >
                       {updating === order.id ? (
                         <RefreshCw className="w-4 h-4 animate-spin" />
@@ -382,7 +382,7 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
 
             {/* Modal header */}
             <div className="sticky top-0 bg-white px-6 pt-6 pb-4 border-b border-gray-100 flex items-center justify-between z-10">
-              <h2 className="font-bold text-[#2B1B14] text-xl">New Delivery Order</h2>
+              <h2 className="font-bold text-[#1A1108] text-xl">New Delivery Order</h2>
               <button onClick={() => setShowForm(false)}>
                 <X className="w-5 h-5 text-gray-400" />
               </button>
@@ -391,7 +391,7 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
             <div className="p-6 space-y-6">
               {/* Source selector */}
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-2">
+                <label className="block text-sm font-semibold text-[#1A1108] mb-2">
                   Order Source <span className="text-red-500">*</span>
                 </label>
                 <div className="grid grid-cols-5 gap-2">
@@ -400,7 +400,7 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
                       onClick={() => setSource(s.value)}
                       className={`flex flex-col items-center gap-1 py-3 rounded-2xl border-2 text-xs font-semibold transition-all ${
                         source === s.value
-                          ? "border-[#E86A2A] bg-[#FFF7ED] text-[#E86A2A]"
+                          ? "border-[#BF4E19] bg-[#FAF3E8] text-[#BF4E19]"
                           : "border-gray-200 text-gray-500 hover:border-gray-300"}`}>
                       <span className="text-xl">{s.emoji}</span>
                       {s.label}
@@ -412,7 +412,7 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
               {/* Platform order ID */}
               {(source === "zomato" || source === "swiggy") && (
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">
                     {source === "zomato" ? "Zomato" : "Swiggy"} Order ID
                     <span className="text-gray-400 font-normal ml-1">(from their app/tablet)</span>
                   </label>
@@ -421,7 +421,7 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
                     value={externalId}
                     onChange={e => setExternalId(e.target.value)}
                     placeholder={source === "zomato" ? "e.g. 12345678" : "e.g. SW-987654"}
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]"
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]"
                   />
                 </div>
               )}
@@ -429,7 +429,7 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
               {/* Customer details */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">
                     Customer Name <span className="text-gray-400 font-normal">(optional)</span>
                   </label>
                   <input
@@ -437,11 +437,11 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
                     value={customerName}
                     onChange={e => setCustomerName(e.target.value)}
                     placeholder="Rahul Sharma"
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]"
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">
                     Phone <span className="text-gray-400 font-normal">(optional)</span>
                   </label>
                   <input
@@ -449,14 +449,14 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
                     value={customerPhone}
                     onChange={e => setCustomerPhone(e.target.value)}
                     placeholder="+91 98765 43210"
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]"
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]"
                   />
                 </div>
               </div>
 
               {(source === "zomato" || source === "swiggy" || source === "other") && (
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">
                     Delivery Address <span className="text-gray-400 font-normal">(optional)</span>
                   </label>
                   <textarea
@@ -464,14 +464,14 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
                     onChange={e => setDeliveryAddress(e.target.value)}
                     placeholder="Full delivery address..."
                     rows={2}
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A] resize-none"
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19] resize-none"
                   />
                 </div>
               )}
 
               {/* Item picker */}
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-2">
+                <label className="block text-sm font-semibold text-[#1A1108] mb-2">
                   Add Items <span className="text-red-500">*</span>
                 </label>
 
@@ -480,14 +480,14 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
                   <button
                     onClick={() => setActiveCategory("All")}
                     className={`flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold transition-colors ${
-                      activeCategory === "All" ? "bg-[#E86A2A] text-white" : "bg-[#FFF7ED] text-[#5C3D2E] hover:bg-[#F5EBDD]"}`}>
+                      activeCategory === "All" ? "bg-[#BF4E19] text-white" : "bg-[#FAF3E8] text-[#3D2B1A] hover:bg-[#F2E6D0]"}`}>
                     All
                   </button>
                   {categories.map((cat: any) => (
                     <button key={cat.id}
                       onClick={() => setActiveCategory(cat.name)}
                       className={`flex-shrink-0 flex items-center gap-1 px-4 py-2 rounded-xl text-xs font-semibold transition-colors ${
-                        activeCategory === cat.name ? "bg-[#E86A2A] text-white" : "bg-[#FFF7ED] text-[#5C3D2E] hover:bg-[#F5EBDD]"}`}>
+                        activeCategory === cat.name ? "bg-[#BF4E19] text-white" : "bg-[#FAF3E8] text-[#3D2B1A] hover:bg-[#F2E6D0]"}`}>
                       {cat.icon} {cat.name}
                     </button>
                   ))}
@@ -501,7 +501,7 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
                     value={itemSearch}
                     onChange={e => setItemSearch(e.target.value)}
                     placeholder="Search menu items..."
-                    className="w-full pl-10 pr-4 py-2.5 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]"
+                    className="w-full pl-10 pr-4 py-2.5 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]"
                   />
                 </div>
 
@@ -511,26 +511,26 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
                     const qty = cartQty(item.id);
                     return (
                       <div key={item.id}
-                        className="flex items-center justify-between bg-[#FFF7ED] rounded-xl px-3 py-2.5 gap-2">
+                        className="flex items-center justify-between bg-[#FAF3E8] rounded-xl px-3 py-2.5 gap-2">
                         <div className="min-w-0 flex-1">
-                          <p className="text-xs font-semibold text-[#2B1B14] truncate">{item.name}</p>
-                          <p className="text-xs text-[#E86A2A] font-bold">{formatPrice(item.price)}</p>
+                          <p className="text-xs font-semibold text-[#1A1108] truncate">{item.name}</p>
+                          <p className="text-xs text-[#BF4E19] font-bold">{formatPrice(item.price)}</p>
                         </div>
                         {qty === 0 ? (
                           <button
                             onClick={() => addToCart(item)}
-                            className="w-7 h-7 bg-[#E86A2A] text-white rounded-lg flex items-center justify-center hover:bg-[#C94F16] transition-colors shrink-0">
+                            className="w-7 h-7 bg-[#BF4E19] text-white rounded-lg flex items-center justify-center hover:bg-[#A33D10] transition-colors shrink-0">
                             <Plus className="w-3.5 h-3.5" />
                           </button>
                         ) : (
                           <div className="flex items-center gap-1.5 shrink-0">
                             <button onClick={() => updateQty(item.id, qty - 1)}
-                              className="w-6 h-6 bg-white rounded-lg flex items-center justify-center border border-[#E8D5C0] hover:bg-[#F5EBDD]">
-                              <Minus className="w-3 h-3 text-[#2B1B14]" />
+                              className="w-6 h-6 bg-white rounded-lg flex items-center justify-center border border-[#E8D5B7] hover:bg-[#F2E6D0]">
+                              <Minus className="w-3 h-3 text-[#1A1108]" />
                             </button>
-                            <span className="text-xs font-bold text-[#2B1B14] w-4 text-center">{qty}</span>
+                            <span className="text-xs font-bold text-[#1A1108] w-4 text-center">{qty}</span>
                             <button onClick={() => addToCart(item)}
-                              className="w-6 h-6 bg-[#E86A2A] text-white rounded-lg flex items-center justify-center hover:bg-[#C94F16]">
+                              className="w-6 h-6 bg-[#BF4E19] text-white rounded-lg flex items-center justify-center hover:bg-[#A33D10]">
                               <Plus className="w-3 h-3" />
                             </button>
                           </div>
@@ -546,15 +546,15 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
 
               {/* Cart summary */}
               {cart.length > 0 && (
-                <div className="bg-[#FFF7ED] rounded-2xl p-4 space-y-2">
-                  <p className="text-sm font-bold text-[#2B1B14] mb-3">
+                <div className="bg-[#FAF3E8] rounded-2xl p-4 space-y-2">
+                  <p className="text-sm font-bold text-[#1A1108] mb-3">
                     🛒 Cart ({cart.reduce((s, i) => s + i.qty, 0)} items)
                   </p>
                   {cart.map(line => (
                     <div key={line.menuItemId} className="flex items-center justify-between text-sm gap-2">
-                      <span className="text-[#5C3D2E] flex-1 truncate">{line.qty} × {line.name}</span>
+                      <span className="text-[#3D2B1A] flex-1 truncate">{line.qty} × {line.name}</span>
                       <div className="flex items-center gap-2 shrink-0">
-                        <span className="font-semibold text-[#2B1B14]">{formatPrice(line.price * line.qty)}</span>
+                        <span className="font-semibold text-[#1A1108]">{formatPrice(line.price * line.qty)}</span>
                         <button onClick={() => updateQty(line.menuItemId, 0)}
                           className="text-red-400 hover:text-red-600 transition-colors">
                           <Trash2 className="w-3.5 h-3.5" />
@@ -562,16 +562,16 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
                       </div>
                     </div>
                   ))}
-                  <div className="border-t border-[#E8D5C0] pt-2 mt-2 space-y-1">
+                  <div className="border-t border-[#E8D5B7] pt-2 mt-2 space-y-1">
                     <div className="flex justify-between text-xs text-gray-500">
                       <span>Subtotal</span><span>{formatPrice(subtotal)}</span>
                     </div>
                     <div className="flex justify-between text-xs text-gray-500">
                       <span>GST (5%)</span><span>{formatPrice(tax)}</span>
                     </div>
-                    <div className="flex justify-between font-bold text-[#2B1B14]">
+                    <div className="flex justify-between font-bold text-[#1A1108]">
                       <span>Total</span>
-                      <span className="text-[#E86A2A] text-base">{formatPrice(total)}</span>
+                      <span className="text-[#BF4E19] text-base">{formatPrice(total)}</span>
                     </div>
                   </div>
                 </div>
@@ -579,7 +579,7 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
 
               {/* Notes */}
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">
+                <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">
                   Order Notes <span className="text-gray-400 font-normal">(optional)</span>
                 </label>
                 <textarea
@@ -587,7 +587,7 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
                   onChange={e => setNotes(e.target.value)}
                   placeholder="Special instructions, allergies, etc."
                   rows={2}
-                  className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A] resize-none"
+                  className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19] resize-none"
                 />
               </div>
 
@@ -595,7 +595,7 @@ export default function DeliveryClient({ orders: initOrders, menuItems, categori
               <button
                 onClick={placeOrder}
                 disabled={saving || cart.length === 0}
-                className="w-full bg-[#E86A2A] text-white py-4 rounded-2xl font-bold text-base hover:bg-[#C94F16] transition-colors disabled:opacity-50 flex items-center justify-center gap-2 shadow-sm"
+                className="w-full bg-[#BF4E19] text-white py-4 rounded-2xl font-bold text-base hover:bg-[#A33D10] transition-colors disabled:opacity-50 flex items-center justify-center gap-2 shadow-sm"
               >
                 {saving ? (
                   <><RefreshCw className="w-5 h-5 animate-spin" /> Placing Order...</>

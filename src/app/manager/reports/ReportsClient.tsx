@@ -96,11 +96,11 @@ export default function ReportsClient({ orders, orderItems, employees, attendanc
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#2B1B14]">Reports</h1>
+          <h1 className="text-2xl font-bold text-[#1A1108]">Reports</h1>
           <p className="text-gray-500 text-sm mt-0.5">Export and analyse café performance</p>
         </div>
         <input type="month" value={filterMonth} onChange={e => setFilterMonth(e.target.value)}
-          className="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+          className="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
       </div>
 
       {/* Tabs */}
@@ -108,7 +108,7 @@ export default function ReportsClient({ orders, orderItems, employees, attendanc
         {tabs.map(({ key, label, icon: Icon }) => (
           <button key={key} onClick={() => setActiveTab(key as any)}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-              activeTab === key ? "bg-[#E86A2A] text-white shadow-sm" : "text-gray-500 hover:text-[#2B1B14]"}`}>
+              activeTab === key ? "bg-[#BF4E19] text-white shadow-sm" : "text-gray-500 hover:text-[#1A1108]"}`}>
             <Icon className="w-4 h-4" />{label}
           </button>
         ))}
@@ -118,9 +118,9 @@ export default function ReportsClient({ orders, orderItems, employees, attendanc
       {activeTab === "sales" && (
         <div className="space-y-5">
           <div className="flex justify-between items-center">
-            <h2 className="font-bold text-[#2B1B14]">Sales Report — {format(new Date(filterMonth + "-01"), "MMMM yyyy")}</h2>
+            <h2 className="font-bold text-[#1A1108]">Sales Report — {format(new Date(filterMonth + "-01"), "MMMM yyyy")}</h2>
             <button onClick={exportSales}
-              className="flex items-center gap-2 bg-[#E86A2A] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#C94F16] transition-colors">
+              className="flex items-center gap-2 bg-[#BF4E19] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#A33D10] transition-colors">
               <Download className="w-4 h-4" /> Export CSV
             </button>
           </div>
@@ -128,7 +128,7 @@ export default function ReportsClient({ orders, orderItems, employees, attendanc
             {[
               ["Total Orders",    filteredOrders.length,             "bg-blue-50 text-blue-700"],
               ["Completed",       completedOrders.length,            "bg-green-50 text-green-700"],
-              ["Revenue",         formatPrice(salesRevenue),         "bg-[#FFF7ED] text-[#E86A2A]"],
+              ["Revenue",         formatPrice(salesRevenue),         "bg-[#FAF3E8] text-[#BF4E19]"],
               ["Tax Collected",   formatPrice(salesTax),             "bg-purple-50 text-purple-700"],
             ].map(([l,v,c]) => (
               <div key={l as string} className={`rounded-2xl p-4 ${(c as string).split(" ")[0]}`}>
@@ -140,15 +140,15 @@ export default function ReportsClient({ orders, orderItems, employees, attendanc
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                <thead><tr className="bg-[#FFF7ED] text-left">
+                <thead><tr className="bg-[#FAF3E8] text-left">
                   {["Order","Table","Status","Subtotal","Tax","Total","Date"].map(h => (
-                    <th key={h} className="px-4 py-3.5 font-semibold text-[#2B1B14]">{h}</th>
+                    <th key={h} className="px-4 py-3.5 font-semibold text-[#1A1108]">{h}</th>
                   ))}
                 </tr></thead>
                 <tbody className="divide-y divide-gray-50">
                   {filteredOrders.slice(0,50).map(o => (
                     <tr key={o.id} className="hover:bg-gray-50">
-                      <td className="px-4 py-3 font-semibold text-[#2B1B14]">#{o.order_number}</td>
+                      <td className="px-4 py-3 font-semibold text-[#1A1108]">#{o.order_number}</td>
                       <td className="px-4 py-3 text-gray-600">{o.table?.table_number ?? "—"}</td>
                       <td className="px-4 py-3">
                         <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
@@ -159,7 +159,7 @@ export default function ReportsClient({ orders, orderItems, employees, attendanc
                       </td>
                       <td className="px-4 py-3">{formatPrice(o.subtotal)}</td>
                       <td className="px-4 py-3">{formatPrice(o.tax)}</td>
-                      <td className="px-4 py-3 font-semibold text-[#E86A2A]">{formatPrice(o.total)}</td>
+                      <td className="px-4 py-3 font-semibold text-[#BF4E19]">{formatPrice(o.total)}</td>
                       <td className="px-4 py-3 text-xs text-gray-400">{format(parseISO(o.created_at), "MMM d, hh:mm a")}</td>
                     </tr>
                   ))}
@@ -177,9 +177,9 @@ export default function ReportsClient({ orders, orderItems, employees, attendanc
       {activeTab === "inventory" && (
         <div className="space-y-5">
           <div className="flex justify-between items-center">
-            <h2 className="font-bold text-[#2B1B14]">Inventory Report</h2>
+            <h2 className="font-bold text-[#1A1108]">Inventory Report</h2>
             <button onClick={exportInventory}
-              className="flex items-center gap-2 bg-[#E86A2A] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#C94F16] transition-colors">
+              className="flex items-center gap-2 bg-[#BF4E19] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#A33D10] transition-colors">
               <Download className="w-4 h-4" /> Export CSV
             </button>
           </div>
@@ -198,15 +198,15 @@ export default function ReportsClient({ orders, orderItems, employees, attendanc
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                <thead><tr className="bg-[#FFF7ED] text-left">
+                <thead><tr className="bg-[#FAF3E8] text-left">
                   {["Item","Category","Stock","Unit","Min","Status","Price","Supplier"].map(h => (
-                    <th key={h} className="px-4 py-3.5 font-semibold text-[#2B1B14]">{h}</th>
+                    <th key={h} className="px-4 py-3.5 font-semibold text-[#1A1108]">{h}</th>
                   ))}
                 </tr></thead>
                 <tbody className="divide-y divide-gray-50">
                   {invItems.filter(i=>i.is_active).map(i => (
                     <tr key={i.id} className="hover:bg-gray-50">
-                      <td className="px-4 py-3 font-medium text-[#2B1B14]">{i.name}</td>
+                      <td className="px-4 py-3 font-medium text-[#1A1108]">{i.name}</td>
                       <td className="px-4 py-3 text-gray-500">{i.category?.name ?? "—"}</td>
                       <td className="px-4 py-3 font-semibold">{i.current_stock}</td>
                       <td className="px-4 py-3 text-gray-400">{i.unit}</td>
@@ -233,9 +233,9 @@ export default function ReportsClient({ orders, orderItems, employees, attendanc
       {activeTab === "attendance" && (
         <div className="space-y-5">
           <div className="flex justify-between items-center">
-            <h2 className="font-bold text-[#2B1B14]">Attendance Report — {format(new Date(filterMonth + "-01"), "MMMM yyyy")}</h2>
+            <h2 className="font-bold text-[#1A1108]">Attendance Report — {format(new Date(filterMonth + "-01"), "MMMM yyyy")}</h2>
             <button onClick={exportAttendance}
-              className="flex items-center gap-2 bg-[#E86A2A] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#C94F16] transition-colors">
+              className="flex items-center gap-2 bg-[#BF4E19] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#A33D10] transition-colors">
               <Download className="w-4 h-4" /> Export CSV
             </button>
           </div>
@@ -256,9 +256,9 @@ export default function ReportsClient({ orders, orderItems, employees, attendanc
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                <thead><tr className="bg-[#FFF7ED] text-left">
+                <thead><tr className="bg-[#FAF3E8] text-left">
                   {["Employee","Present","Absent","Half Day","Leave","Late","Attendance %"].map(h => (
-                    <th key={h} className="px-4 py-3.5 font-semibold text-[#2B1B14]">{h}</th>
+                    <th key={h} className="px-4 py-3.5 font-semibold text-[#1A1108]">{h}</th>
                   ))}
                 </tr></thead>
                 <tbody className="divide-y divide-gray-50">
@@ -273,7 +273,7 @@ export default function ReportsClient({ orders, orderItems, employees, attendanc
                     const pct = total > 0 ? Math.round((p + la*0.9 + h*0.5) / total * 100) : 0;
                     return (
                       <tr key={emp.id} className="hover:bg-gray-50">
-                        <td className="px-4 py-3 font-medium text-[#2B1B14]">{emp.name}</td>
+                        <td className="px-4 py-3 font-medium text-[#1A1108]">{emp.name}</td>
                         <td className="px-4 py-3 text-green-600 font-semibold">{p}</td>
                         <td className="px-4 py-3 text-red-600 font-semibold">{ab}</td>
                         <td className="px-4 py-3 text-yellow-600 font-semibold">{h}</td>
@@ -294,9 +294,9 @@ export default function ReportsClient({ orders, orderItems, employees, attendanc
       {activeTab === "payouts" && (
         <div className="space-y-5">
           <div className="flex justify-between items-center">
-            <h2 className="font-bold text-[#2B1B14]">Payouts Report — {format(new Date(filterMonth + "-01"), "MMMM yyyy")}</h2>
+            <h2 className="font-bold text-[#1A1108]">Payouts Report — {format(new Date(filterMonth + "-01"), "MMMM yyyy")}</h2>
             <button onClick={exportPayouts}
-              className="flex items-center gap-2 bg-[#E86A2A] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#C94F16] transition-colors">
+              className="flex items-center gap-2 bg-[#BF4E19] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#A33D10] transition-colors">
               <Download className="w-4 h-4" /> Export CSV
             </button>
           </div>
@@ -315,15 +315,15 @@ export default function ReportsClient({ orders, orderItems, employees, attendanc
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                <thead><tr className="bg-[#FFF7ED] text-left">
+                <thead><tr className="bg-[#FAF3E8] text-left">
                   {["Employee","Type","Amount","Method","Description","Date"].map(h => (
-                    <th key={h} className="px-4 py-3.5 font-semibold text-[#2B1B14]">{h}</th>
+                    <th key={h} className="px-4 py-3.5 font-semibold text-[#1A1108]">{h}</th>
                   ))}
                 </tr></thead>
                 <tbody className="divide-y divide-gray-50">
                   {filteredTxns.map((t: any) => (
                     <tr key={t.id} className="hover:bg-gray-50">
-                      <td className="px-4 py-3 font-medium text-[#2B1B14]">{t.employee?.name ?? "—"}</td>
+                      <td className="px-4 py-3 font-medium text-[#1A1108]">{t.employee?.name ?? "—"}</td>
                       <td className="px-4 py-3">
                         <span className={`text-xs font-semibold px-2 py-0.5 rounded-full capitalize ${
                           t.type === "salary" ? "bg-green-100 text-green-700" :
@@ -331,7 +331,7 @@ export default function ReportsClient({ orders, orderItems, employees, attendanc
                           t.type === "bonus" ? "bg-purple-100 text-purple-700" :
                           "bg-gray-100 text-gray-600"}`}>{t.type}</span>
                       </td>
-                      <td className="px-4 py-3 font-semibold text-[#E86A2A]">{formatPrice(t.amount)}</td>
+                      <td className="px-4 py-3 font-semibold text-[#BF4E19]">{formatPrice(t.amount)}</td>
                       <td className="px-4 py-3 text-gray-500 text-xs capitalize">{t.payment_method?.replace("_"," ")}</td>
                       <td className="px-4 py-3 text-gray-400 text-xs">{t.description ?? "—"}</td>
                       <td className="px-4 py-3 text-gray-400 text-xs">{format(parseISO(t.created_at), "MMM d, yyyy")}</td>

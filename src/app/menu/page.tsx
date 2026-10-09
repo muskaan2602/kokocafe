@@ -19,17 +19,17 @@ export default async function MenuPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-[#FFF7ED]">
+      <main className="min-h-screen bg-[#FAF3E8]">
         {/* Header */}
-        <div className="bg-[#2B1B14] py-16 text-center">
+        <div className="bg-[#1A1108] py-16 text-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="inline-block bg-[#E86A2A]/20 text-[#E86A2A] text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-4 border border-[#E86A2A]/30">
+            <div className="inline-block bg-[#BF4E19]/20 text-[#BF4E19] text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-4 border border-[#BF4E19]/30">
               Full Menu
             </div>
             <h1 className="font-display text-5xl font-bold text-white mb-3">
               KOKO Menu
             </h1>
-            <p className="text-[#8B5E44] text-lg">
+            <p className="text-[#6B4C35] text-lg">
               Freshly made, every single day.
             </p>
           </div>

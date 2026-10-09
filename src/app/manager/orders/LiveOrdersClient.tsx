@@ -15,7 +15,7 @@ type AnyOrder = any;
 
 // ── Source config (shared with delivery page) ──────────────────────────
 const SOURCE_META: Record<string, { emoji: string; label: string; color: string }> = {
-  dine_in:  { emoji: "🍽️", label: "Dine-in",  color: "bg-[#FFF7ED] text-[#E86A2A] border-[#E8D5C0]" },
+  dine_in:  { emoji: "🍽️", label: "Dine-in",  color: "bg-[#FAF3E8] text-[#BF4E19] border-[#E8D5B7]" },
   zomato:   { emoji: "🔴", label: "Zomato",   color: "bg-red-50 text-red-700 border-red-200"          },
   swiggy:   { emoji: "🟠", label: "Swiggy",   color: "bg-orange-50 text-orange-700 border-orange-200"  },
   phone:    { emoji: "📞", label: "Phone",    color: "bg-blue-50 text-blue-700 border-blue-200"        },
@@ -85,8 +85,8 @@ export default function LiveOrdersClient({ initialOrders, initialCompleted }: Pr
             setActiveOrders((prev) => [order, ...prev]);
             const src = SOURCE_META[order.order_source ?? "dine_in"] ?? SOURCE_META.dine_in;
             toast.custom((t) => (
-              <div className={`bg-[#2B1B14] text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 ${t.visible ? "animate-bounce-in" : ""}`}>
-                <Bell className="w-5 h-5 text-[#E86A2A]" />
+              <div className={`bg-[#1A1108] text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 ${t.visible ? "animate-bounce-in" : ""}`}>
+                <Bell className="w-5 h-5 text-[#BF4E19]" />
                 <div>
                   <p className="font-semibold text-sm">
                     {src.emoji} New {src.label} Order
@@ -172,8 +172,8 @@ export default function LiveOrdersClient({ initialOrders, initialCompleted }: Pr
                 <Bell className="w-4 h-4 text-red-500 animate-bounce" />
               )}
             </div>
-            <h3 className="font-bold text-[#2B1B14] text-lg">Order #{order.order_number}</h3>
-            <p className="text-sm font-semibold text-[#5C3D2E]">{tableLabel}</p>
+            <h3 className="font-bold text-[#1A1108] text-lg">Order #{order.order_number}</h3>
+            <p className="text-sm font-semibold text-[#3D2B1A]">{tableLabel}</p>
             {!isDineIn && order.customer_phone && (
               <p className="text-xs text-gray-500">📞 {order.customer_phone}</p>
             )}
@@ -196,19 +196,19 @@ export default function LiveOrdersClient({ initialOrders, initialCompleted }: Pr
         <div className="bg-white/60 rounded-2xl p-3 space-y-1">
           {order.order_items?.map((item: any) => (
             <div key={item.id} className="flex justify-between text-sm">
-              <span className="text-[#5C3D2E]">
+              <span className="text-[#3D2B1A]">
                 {item.quantity} × {item.item_name}
                 {item.special_instructions && (
-                  <span className="text-[#8B5E44] block text-xs">↳ {item.special_instructions}</span>
+                  <span className="text-[#6B4C35] block text-xs">↳ {item.special_instructions}</span>
                 )}
               </span>
-              <span className="font-medium text-[#2B1B14] shrink-0 ml-2">
+              <span className="font-medium text-[#1A1108] shrink-0 ml-2">
                 {formatPrice(item.price * item.quantity)}
               </span>
             </div>
           ))}
           {order.notes && (
-            <p className="text-xs text-[#8B5E44] mt-2 pt-2 border-t border-white/60">📝 {order.notes}</p>
+            <p className="text-xs text-[#6B4C35] mt-2 pt-2 border-t border-white/60">📝 {order.notes}</p>
           )}
         </div>
 
@@ -220,9 +220,9 @@ export default function LiveOrdersClient({ initialOrders, initialCompleted }: Pr
           <div className="flex justify-between text-gray-500">
             <span>GST (5%)</span><span>{formatPrice(order.tax)}</span>
           </div>
-          <div className="flex justify-between font-bold text-[#2B1B14] text-base pt-1 border-t border-white/60">
+          <div className="flex justify-between font-bold text-[#1A1108] text-base pt-1 border-t border-white/60">
             <span>Total</span>
-            <span className="text-[#E86A2A]">{formatPrice(order.total)}</span>
+            <span className="text-[#BF4E19]">{formatPrice(order.total)}</span>
           </div>
         </div>
 
@@ -231,7 +231,7 @@ export default function LiveOrdersClient({ initialOrders, initialCompleted }: Pr
           <div className="flex gap-2">
             <button onClick={() => updateStatus(order.id, nextStatus)}
               disabled={updating === order.id}
-              className="flex-1 bg-[#E86A2A] text-white py-3 rounded-2xl text-sm font-bold hover:bg-[#C94F16] transition-colors disabled:opacity-60 flex items-center justify-center gap-2">
+              className="flex-1 bg-[#BF4E19] text-white py-3 rounded-2xl text-sm font-bold hover:bg-[#A33D10] transition-colors disabled:opacity-60 flex items-center justify-center gap-2">
               {updating === order.id ? (
                 <RefreshCw className="w-4 h-4 animate-spin" />
               ) : (
@@ -262,7 +262,7 @@ export default function LiveOrdersClient({ initialOrders, initialCompleted }: Pr
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#2B1B14]">Live Orders</h1>
+          <h1 className="text-2xl font-bold text-[#1A1108]">Live Orders</h1>
           <p className="text-gray-500 text-sm mt-0.5">Real-time order management — all sources</p>
         </div>
         <div className="flex items-center gap-2">
@@ -280,8 +280,8 @@ export default function LiveOrdersClient({ initialOrders, initialCompleted }: Pr
           <button key={s.value} onClick={() => setFilterSource(s.value)}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition-colors border ${
               filterSource === s.value
-                ? "bg-[#2B1B14] text-white border-[#2B1B14]"
-                : "bg-white text-gray-600 border-gray-200 hover:border-[#E86A2A] hover:text-[#E86A2A]"}`}>
+                ? "bg-[#1A1108] text-white border-[#1A1108]"
+                : "bg-white text-gray-600 border-gray-200 hover:border-[#BF4E19] hover:text-[#BF4E19]"}`}>
             {s.emoji} {s.label}
           </button>
         ))}
@@ -291,19 +291,19 @@ export default function LiveOrdersClient({ initialOrders, initialCompleted }: Pr
       <div className="flex gap-2 bg-white rounded-2xl p-1 w-fit shadow-sm border border-gray-100">
         <button onClick={() => setActiveTab("active")}
           className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-            activeTab === "active" ? "bg-[#E86A2A] text-white shadow-sm" : "text-gray-500 hover:text-[#2B1B14]"}`}>
+            activeTab === "active" ? "bg-[#BF4E19] text-white shadow-sm" : "text-gray-500 hover:text-[#1A1108]"}`}>
           <ShoppingBag className="w-4 h-4" />
           Active Orders
           {visibleActive.length > 0 && (
             <span className={`text-xs px-1.5 py-0.5 rounded-full font-bold ${
-              activeTab === "active" ? "bg-white/20 text-white" : "bg-[#E86A2A] text-white"}`}>
+              activeTab === "active" ? "bg-white/20 text-white" : "bg-[#BF4E19] text-white"}`}>
               {visibleActive.length}
             </span>
           )}
         </button>
         <button onClick={() => setActiveTab("completed")}
           className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-            activeTab === "completed" ? "bg-[#E86A2A] text-white shadow-sm" : "text-gray-500 hover:text-[#2B1B14]"}`}>
+            activeTab === "completed" ? "bg-[#BF4E19] text-white shadow-sm" : "text-gray-500 hover:text-[#1A1108]"}`}>
           <CheckCircle2 className="w-4 h-4" />
           Completed
           {visibleCompleted.length > 0 && (

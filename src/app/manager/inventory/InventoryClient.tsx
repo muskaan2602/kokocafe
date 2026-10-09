@@ -164,7 +164,7 @@ export default function InventoryClient({
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#2B1B14]">Inventory</h1>
+          <h1 className="text-2xl font-bold text-[#1A1108]">Inventory</h1>
           <p className="text-gray-500 text-sm mt-0.5">
             {items.filter(i => i.is_active).length} items
             {lowCount > 0 && <span className="text-yellow-600 ml-2">· {lowCount} low stock</span>}
@@ -172,7 +172,7 @@ export default function InventoryClient({
           </p>
         </div>
         <button onClick={openAdd}
-          className="flex items-center gap-2 bg-[#E86A2A] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#C94F16] transition-colors">
+          className="flex items-center gap-2 bg-[#BF4E19] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#A33D10] transition-colors">
           <Plus className="w-4 h-4" /> Add Item
         </button>
       </div>
@@ -194,7 +194,7 @@ export default function InventoryClient({
         {(["items", "history"] as const).map(tab => (
           <button key={tab} onClick={() => setActiveTab(tab)}
             className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all capitalize ${
-              activeTab === tab ? "bg-[#E86A2A] text-white shadow-sm" : "text-gray-500 hover:text-[#2B1B14]"}`}>
+              activeTab === tab ? "bg-[#BF4E19] text-white shadow-sm" : "text-gray-500 hover:text-[#1A1108]"}`}>
             {tab === "items" ? <span className="flex items-center gap-2"><Package className="w-4 h-4" />Items</span>
               : <span className="flex items-center gap-2"><History className="w-4 h-4" />Stock History</span>}
           </button>
@@ -209,15 +209,15 @@ export default function InventoryClient({
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
               <input value={search} onChange={e => setSearch(e.target.value)}
                 placeholder="Search items or supplier..."
-                className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
             </div>
             <select value={filterCat} onChange={e => setFilterCat(e.target.value)}
-              className="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]">
+              className="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]">
               <option value="All">All Categories</option>
               {categories.map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
             </select>
             <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)}
-              className="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]">
+              className="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]">
               <option value="All">All Status</option>
               <option value="ok">In Stock</option>
               <option value="low">Low Stock</option>
@@ -231,7 +231,7 @@ export default function InventoryClient({
               <div key={item.id} className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 space-y-3">
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <h3 className="font-semibold text-[#2B1B14]">{item.name}</h3>
+                    <h3 className="font-semibold text-[#1A1108]">{item.name}</h3>
                     <p className="text-xs text-gray-400 mt-0.5">
                       {item.category?.name ?? "Uncategorised"}
                       {item.supplier && <> · {item.supplier}</>}
@@ -243,7 +243,7 @@ export default function InventoryClient({
                 {/* Stock bar */}
                 <div>
                   <div className="flex justify-between text-sm mb-1">
-                    <span className="font-bold text-[#2B1B14] text-lg">
+                    <span className="font-bold text-[#1A1108] text-lg">
                       {item.current_stock} <span className="text-sm font-normal text-gray-500">{item.unit}</span>
                     </span>
                     <span className="text-xs text-gray-400">Min: {item.min_stock} {item.unit}</span>
@@ -275,7 +275,7 @@ export default function InventoryClient({
                     <Minus className="w-3.5 h-3.5" /> Waste
                   </button>
                   <button onClick={() => openEdit(item)}
-                    className="p-2 rounded-xl bg-[#FFF7ED] text-[#E86A2A] hover:bg-[#F5EBDD] transition-colors">
+                    className="p-2 rounded-xl bg-[#FAF3E8] text-[#BF4E19] hover:bg-[#F2E6D0] transition-colors">
                     <Pencil className="w-3.5 h-3.5" />
                   </button>
                   <button onClick={() => deactivateItem(item.id)}
@@ -300,24 +300,24 @@ export default function InventoryClient({
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-[#FFF7ED] text-left">
-                  <th className="px-5 py-3.5 font-semibold text-[#2B1B14]">Item</th>
-                  <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Type</th>
-                  <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Qty</th>
-                  <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Note</th>
-                  <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Date</th>
+                <tr className="bg-[#FAF3E8] text-left">
+                  <th className="px-5 py-3.5 font-semibold text-[#1A1108]">Item</th>
+                  <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Type</th>
+                  <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Qty</th>
+                  <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Note</th>
+                  <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Date</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
                 {movements.map(m => (
                   <tr key={m.id} className="hover:bg-gray-50">
-                    <td className="px-5 py-3.5 font-medium text-[#2B1B14]">{m.item?.name ?? "—"}</td>
+                    <td className="px-5 py-3.5 font-medium text-[#1A1108]">{m.item?.name ?? "—"}</td>
                     <td className="px-4 py-3.5">
                       <span className={`text-xs font-semibold px-2 py-1 rounded-full ${MOVEMENT_COLORS[m.type]}`}>
                         {MOVEMENT_LABELS[m.type]}
                       </span>
                     </td>
-                    <td className="px-4 py-3.5 font-semibold text-[#2B1B14]">
+                    <td className="px-4 py-3.5 font-semibold text-[#1A1108]">
                       {m.type === "add" || m.type === "opening" ? "+" : "−"}{m.quantity} {m.item?.unit}
                     </td>
                     <td className="px-4 py-3.5 text-gray-500 text-xs">{m.note ?? "—"}</td>
@@ -341,31 +341,31 @@ export default function InventoryClient({
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setItemModal(null)} />
           <div className="relative bg-white rounded-3xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl p-6">
             <div className="flex items-center justify-between mb-5">
-              <h2 className="font-bold text-[#2B1B14] text-xl">
+              <h2 className="font-bold text-[#1A1108] text-xl">
                 {itemModal === "add" ? "Add Inventory Item" : "Edit Item"}
               </h2>
               <button onClick={() => setItemModal(null)}><X className="w-5 h-5 text-gray-400" /></button>
             </div>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Item Name *</label>
+                <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Item Name *</label>
                 <input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
                   placeholder="e.g. Whole Milk"
-                  className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                  className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Category</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Category</label>
                   <select value={form.category_id} onChange={e => setForm({ ...form, category_id: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]">
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]">
                     <option value="">Uncategorised</option>
                     {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Unit</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Unit</label>
                   <select value={form.unit} onChange={e => setForm({ ...form, unit: e.target.value as any })}
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]">
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]">
                     {UNITS.map(u => <option key={u} value={u}>{u}</option>)}
                   </select>
                 </div>
@@ -373,41 +373,41 @@ export default function InventoryClient({
               <div className="grid grid-cols-2 gap-4">
                 {itemModal === "add" && (
                   <div>
-                    <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Opening Stock</label>
+                    <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Opening Stock</label>
                     <input type="number" min="0" step="0.001" value={form.current_stock}
                       onChange={e => setForm({ ...form, current_stock: e.target.value })}
-                      className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                      className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                   </div>
                 )}
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Min Stock Level</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Min Stock Level</label>
                   <input type="number" min="0" step="0.001" value={form.min_stock}
                     onChange={e => setForm({ ...form, min_stock: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Purchase Price (₹)</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Purchase Price (₹)</label>
                   <input type="number" min="0" step="0.01" value={form.purchase_price}
                     onChange={e => setForm({ ...form, purchase_price: e.target.value })}
                     placeholder="Per unit"
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Supplier</label>
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Supplier</label>
                   <input value={form.supplier} onChange={e => setForm({ ...form, supplier: e.target.value })}
                     placeholder="Supplier name"
-                    className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                    className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Notes</label>
+                <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Notes</label>
                 <textarea rows={2} value={form.notes} onChange={e => setForm({ ...form, notes: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A] resize-none" />
+                  className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19] resize-none" />
               </div>
               <button onClick={saveItem} disabled={saving}
-                className="w-full bg-[#E86A2A] text-white py-3.5 rounded-2xl font-semibold hover:bg-[#C94F16] transition-colors disabled:opacity-60">
+                className="w-full bg-[#BF4E19] text-white py-3.5 rounded-2xl font-semibold hover:bg-[#A33D10] transition-colors disabled:opacity-60">
                 {saving ? "Saving..." : itemModal === "add" ? "Add Item" : "Update Item"}
               </button>
             </div>
@@ -421,27 +421,27 @@ export default function InventoryClient({
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setMovModal(null)} />
           <div className="relative bg-white rounded-3xl w-full max-w-sm shadow-2xl p-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-bold text-[#2B1B14]">{MOVEMENT_LABELS[movModal.type]}</h2>
+              <h2 className="font-bold text-[#1A1108]">{MOVEMENT_LABELS[movModal.type]}</h2>
               <button onClick={() => setMovModal(null)}><X className="w-5 h-5 text-gray-400" /></button>
             </div>
-            <p className="text-sm text-[#8B5E44] mb-4">
+            <p className="text-sm text-[#6B4C35] mb-4">
               <strong>{movModal.item.name}</strong> — Current: {movModal.item.current_stock} {movModal.item.unit}
             </p>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">
+                <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">
                   {movModal.type === "adjustment" ? "New Stock Quantity" : "Quantity"} ({movModal.item.unit})
                 </label>
                 <input type="number" min="0.001" step="0.001" value={movForm.quantity}
                   onChange={e => setMovForm({ ...movForm, quantity: e.target.value })}
                   placeholder="0.000" autoFocus
-                  className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                  className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Note (optional)</label>
+                <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Note (optional)</label>
                 <input value={movForm.note} onChange={e => setMovForm({ ...movForm, note: e.target.value })}
                   placeholder="e.g. Morning delivery"
-                  className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                  className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <button onClick={() => setMovModal({ ...movModal, type: "add" })}
@@ -462,7 +462,7 @@ export default function InventoryClient({
                 </button>
               </div>
               <button onClick={saveMovement} disabled={saving}
-                className="w-full bg-[#E86A2A] text-white py-3.5 rounded-2xl font-semibold hover:bg-[#C94F16] transition-colors disabled:opacity-60">
+                className="w-full bg-[#BF4E19] text-white py-3.5 rounded-2xl font-semibold hover:bg-[#A33D10] transition-colors disabled:opacity-60">
                 {saving ? "Saving..." : "Record"}
               </button>
             </div>

@@ -57,28 +57,28 @@ export default function ConfirmationClient({ order: initialOrder, tableToken }: 
   const isRejected = status === "rejected";
 
   return (
-    <div className="min-h-screen bg-[#FFF7ED]">
+    <div className="min-h-screen bg-[#FAF3E8]">
       {/* Header */}
-      <header className="bg-white border-b border-[#F5EBDD] px-4 py-3 sticky top-0 z-10 shadow-sm">
+      <header className="bg-white border-b border-[#F2E6D0] px-4 py-3 sticky top-0 z-10 shadow-sm">
         <div className="max-w-2xl mx-auto flex items-center gap-3">
           <Link
             href={`/order/${tableToken}`}
-            className="p-2 rounded-xl hover:bg-[#F5EBDD] transition-colors text-[#2B1B14]"
+            className="p-2 rounded-xl hover:bg-[#F2E6D0] transition-colors text-[#1A1108]"
           >
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="font-display font-bold text-[#2B1B14]">
+            <h1 className="font-display font-bold text-[#1A1108]">
               Order Confirmation
             </h1>
-            <p className="text-xs text-[#8B5E44]">{tableLabel}</p>
+            <p className="text-xs text-[#6B4C35]">{tableLabel}</p>
           </div>
         </div>
       </header>
 
       <div className="max-w-2xl mx-auto px-4 py-6 space-y-5">
         {/* Success banner */}
-        <div className={`rounded-3xl p-6 text-center ${isRejected ? "bg-red-50 border border-red-100" : "bg-[#E86A2A]"}`}>
+        <div className={`rounded-3xl p-6 text-center ${isRejected ? "bg-red-50 border border-red-100" : "bg-[#BF4E19]"}`}>
           <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 ${isRejected ? "bg-red-100" : "bg-white/20"}`}>
             {isRejected ? (
               <span className="text-3xl">❌</span>
@@ -108,32 +108,32 @@ export default function ConfirmationClient({ order: initialOrder, tableToken }: 
         </div>
 
         {/* Order info */}
-        <div className="bg-white rounded-3xl p-5 shadow-sm border border-[#F5EBDD]">
+        <div className="bg-white rounded-3xl p-5 shadow-sm border border-[#F2E6D0]">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="text-xs text-[#8B5E44] uppercase tracking-wider mb-1">
+              <p className="text-xs text-[#6B4C35] uppercase tracking-wider mb-1">
                 Order Number
               </p>
-              <p className="font-bold text-[#2B1B14] text-lg">
+              <p className="font-bold text-[#1A1108] text-lg">
                 #{initialOrder.order_number}
               </p>
             </div>
             <div>
-              <p className="text-xs text-[#8B5E44] uppercase tracking-wider mb-1">
+              <p className="text-xs text-[#6B4C35] uppercase tracking-wider mb-1">
                 Table
               </p>
-              <p className="font-bold text-[#2B1B14] text-lg">{tableLabel}</p>
+              <p className="font-bold text-[#1A1108] text-lg">{tableLabel}</p>
             </div>
           </div>
         </div>
 
         {/* Status tracker */}
-        <div className="bg-white rounded-3xl p-5 shadow-sm border border-[#F5EBDD]">
-          <h3 className="font-semibold text-[#2B1B14] mb-5">Order Status</h3>
+        <div className="bg-white rounded-3xl p-5 shadow-sm border border-[#F2E6D0]">
+          <h3 className="font-semibold text-[#1A1108] mb-5">Order Status</h3>
           {isRejected ? (
             <div className="text-center py-4 text-red-500">
               <p className="font-semibold">Order has been rejected</p>
-              <p className="text-sm mt-1 text-[#8B5E44]">
+              <p className="text-sm mt-1 text-[#6B4C35]">
                 Please visit the counter or speak to staff.
               </p>
             </div>
@@ -152,8 +152,8 @@ export default function ConfirmationClient({ order: initialOrder, tableToken }: 
                         isCompleted
                           ? "bg-green-500 text-white"
                           : isCurrent
-                          ? "bg-[#E86A2A] text-white shadow-md ring-4 ring-[#E86A2A]/20"
-                          : "bg-[#F5EBDD] text-[#8B5E44]"
+                          ? "bg-[#BF4E19] text-white shadow-md ring-4 ring-[#BF4E19]/20"
+                          : "bg-[#F2E6D0] text-[#6B4C35]"
                       }`}
                     >
                       {isCompleted ? (
@@ -166,14 +166,14 @@ export default function ConfirmationClient({ order: initialOrder, tableToken }: 
                       <p
                         className={`font-medium text-sm ${
                           isCompleted || isCurrent
-                            ? "text-[#2B1B14]"
-                            : "text-[#8B5E44]"
+                            ? "text-[#1A1108]"
+                            : "text-[#6B4C35]"
                         }`}
                       >
                         {step.label}
                       </p>
                       {isCurrent && (
-                        <p className="text-xs text-[#E86A2A] mt-0.5">
+                        <p className="text-xs text-[#BF4E19] mt-0.5">
                           {step.status === "pending"
                             ? "Waiting for café to accept..."
                             : step.status === "accepted"
@@ -189,7 +189,7 @@ export default function ConfirmationClient({ order: initialOrder, tableToken }: 
                     {(isCompleted || isCurrent) && !isPending && (
                       <div
                         className={`w-2 h-2 rounded-full ${
-                          isCurrent ? "bg-[#E86A2A] animate-pulse" : "bg-green-500"
+                          isCurrent ? "bg-[#BF4E19] animate-pulse" : "bg-green-500"
                         }`}
                       />
                     )}
@@ -201,31 +201,31 @@ export default function ConfirmationClient({ order: initialOrder, tableToken }: 
         </div>
 
         {/* Order items */}
-        <div className="bg-white rounded-3xl p-5 shadow-sm border border-[#F5EBDD]">
-          <h3 className="font-semibold text-[#2B1B14] mb-4">Your Order</h3>
+        <div className="bg-white rounded-3xl p-5 shadow-sm border border-[#F2E6D0]">
+          <h3 className="font-semibold text-[#1A1108] mb-4">Your Order</h3>
           <div className="space-y-2">
             {initialOrder.order_items?.map((item) => (
               <div key={item.id} className="flex justify-between text-sm">
-                <span className="text-[#5C3D2E]">
+                <span className="text-[#3D2B1A]">
                   {item.quantity} × {item.item_name}
                 </span>
-                <span className="font-medium text-[#2B1B14]">
+                <span className="font-medium text-[#1A1108]">
                   {formatPrice(item.price * item.quantity)}
                 </span>
               </div>
             ))}
-            <div className="border-t border-[#F5EBDD] pt-2 mt-2 space-y-1">
-              <div className="flex justify-between text-sm text-[#5C3D2E]">
+            <div className="border-t border-[#F2E6D0] pt-2 mt-2 space-y-1">
+              <div className="flex justify-between text-sm text-[#3D2B1A]">
                 <span>Subtotal</span>
                 <span>{formatPrice(initialOrder.subtotal)}</span>
               </div>
-              <div className="flex justify-between text-sm text-[#5C3D2E]">
+              <div className="flex justify-between text-sm text-[#3D2B1A]">
                 <span>GST (5%)</span>
                 <span>{formatPrice(initialOrder.tax)}</span>
               </div>
-              <div className="flex justify-between font-bold text-[#2B1B14] mt-2">
+              <div className="flex justify-between font-bold text-[#1A1108] mt-2">
                 <span>Total</span>
-                <span className="text-[#E86A2A]">
+                <span className="text-[#BF4E19]">
                   {formatPrice(initialOrder.total)}
                 </span>
               </div>
@@ -236,7 +236,7 @@ export default function ConfirmationClient({ order: initialOrder, tableToken }: 
         {/* Back to menu */}
         <Link
           href={`/order/${tableToken}`}
-          className="block w-full text-center py-4 bg-[#F5EBDD] text-[#2B1B14] rounded-2xl font-semibold hover:bg-[#E8D5C0] transition-colors"
+          className="block w-full text-center py-4 bg-[#F2E6D0] text-[#1A1108] rounded-2xl font-semibold hover:bg-[#E8D5B7] transition-colors"
         >
           Back to Menu
         </Link>

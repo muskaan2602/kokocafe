@@ -58,10 +58,10 @@ export default function CategoriesClient({ categories: initial }: Props) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#2B1B14]">Categories</h1>
+          <h1 className="text-2xl font-bold text-[#1A1108]">Categories</h1>
           <p className="text-gray-500 text-sm mt-0.5">{categories.length} categories</p>
         </div>
-        <button onClick={openAdd} className="flex items-center gap-2 bg-[#E86A2A] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#C94F16] transition-colors">
+        <button onClick={openAdd} className="flex items-center gap-2 bg-[#BF4E19] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#A33D10] transition-colors">
           <Plus className="w-4 h-4" /> Add Category
         </button>
       </div>
@@ -69,17 +69,17 @@ export default function CategoriesClient({ categories: initial }: Props) {
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         <table className="w-full text-sm">
           <thead>
-            <tr className="bg-[#FFF7ED] text-left">
-              <th className="px-5 py-3.5 font-semibold text-[#2B1B14]">Category</th>
-              <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Icon</th>
-              <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Sort Order</th>
-              <th className="px-4 py-3.5 font-semibold text-[#2B1B14]">Actions</th>
+            <tr className="bg-[#FAF3E8] text-left">
+              <th className="px-5 py-3.5 font-semibold text-[#1A1108]">Category</th>
+              <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Icon</th>
+              <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Sort Order</th>
+              <th className="px-4 py-3.5 font-semibold text-[#1A1108]">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-50">
             {categories.map((cat) => (
               <tr key={cat.id} className="hover:bg-gray-50">
-                <td className="px-5 py-3.5 font-medium text-[#2B1B14]">
+                <td className="px-5 py-3.5 font-medium text-[#1A1108]">
                   <div className="flex items-center gap-2">
                     <GripVertical className="w-4 h-4 text-gray-300" />
                     {cat.name}
@@ -89,7 +89,7 @@ export default function CategoriesClient({ categories: initial }: Props) {
                 <td className="px-4 py-3.5 text-gray-500">{cat.sort_order}</td>
                 <td className="px-4 py-3.5">
                   <div className="flex items-center gap-2">
-                    <button onClick={() => openEdit(cat)} className="p-2 rounded-lg text-gray-400 hover:text-[#E86A2A] hover:bg-[#FFF7ED] transition-colors">
+                    <button onClick={() => openEdit(cat)} className="p-2 rounded-lg text-gray-400 hover:text-[#BF4E19] hover:bg-[#FAF3E8] transition-colors">
                       <Pencil className="w-4 h-4" />
                     </button>
                     <button onClick={() => del(cat.id)} className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors">
@@ -108,25 +108,25 @@ export default function CategoriesClient({ categories: initial }: Props) {
           <div className="absolute inset-0 bg-black/50" onClick={() => setModal(null)} />
           <div className="relative bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-bold text-[#2B1B14]">{modal === "add" ? "Add Category" : "Edit Category"}</h2>
+              <h2 className="font-bold text-[#1A1108]">{modal === "add" ? "Add Category" : "Edit Category"}</h2>
               <button onClick={() => setModal(null)}><X className="w-5 h-5 text-gray-400" /></button>
             </div>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Name *</label>
-                <input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="e.g. Coffee" className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Name *</label>
+                <input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="e.g. Coffee" className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Icon (emoji)</label>
-                  <input value={form.icon} onChange={e => setForm({ ...form, icon: e.target.value })} placeholder="☕" className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Icon (emoji)</label>
+                  <input value={form.icon} onChange={e => setForm({ ...form, icon: e.target.value })} placeholder="☕" className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-[#2B1B14] mb-1.5">Sort Order</label>
-                  <input type="number" value={form.sort_order} onChange={e => setForm({ ...form, sort_order: e.target.value })} className="w-full px-4 py-3 bg-[#FFF7ED] border border-[#E8D5C0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A2A]" />
+                  <label className="block text-sm font-semibold text-[#1A1108] mb-1.5">Sort Order</label>
+                  <input type="number" value={form.sort_order} onChange={e => setForm({ ...form, sort_order: e.target.value })} className="w-full px-4 py-3 bg-[#FAF3E8] border border-[#E8D5B7] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#BF4E19]" />
                 </div>
               </div>
-              <button onClick={save} disabled={saving} className="w-full bg-[#E86A2A] text-white py-3 rounded-2xl font-semibold hover:bg-[#C94F16] transition-colors disabled:opacity-60">
+              <button onClick={save} disabled={saving} className="w-full bg-[#BF4E19] text-white py-3 rounded-2xl font-semibold hover:bg-[#A33D10] transition-colors disabled:opacity-60">
                 {saving ? "Saving..." : (modal === "add" ? "Add Category" : "Update")}
               </button>
             </div>
